@@ -1,5 +1,5 @@
 {
-  "name": "lz-agent-skills",
+  "name": "agent-skillset",
   "version": "0.1.0",
   "description": "Reusable Codex/Claude Code skills for engineering workflows",
   "author": "HernandoR",
