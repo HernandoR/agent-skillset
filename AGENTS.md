@@ -27,8 +27,10 @@ The repository follows conventions learned from `pcl-rustic`:
 
 ```text
 .agents/                  # project metadata only; not installable skills
+.claude-plugin/           # Claude Code plugin manifest (plugin.json)
 docs/plans/               # ADRs (settled decisions)
 docs/rfc/                 # RFCs (proposals for discussion)
+hooks/                    # hook scripts and hooks.json descriptor
 scripts/                  # validation and maintenance scripts
 skills/                   # installable skill packages
 Justfile                  # repeatable project commands
