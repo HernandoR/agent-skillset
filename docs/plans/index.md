@@ -27,10 +27,11 @@ adr-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 | [ADR-0004](adr-0004-loguru-first-logging-2026-06-03.md) | Loguru-First Logging Skill | Accepted |
 | [ADR-0005](adr-0005-agent-spec-convention-2026-06-03.md) | Agent Spec Convention Skill | Accepted |
 | [ADR-0006](adr-0006-tdd-checkbox-plans-2026-06-03.md) | TDD Checkbox Plans Skill (Advisory) | Accepted |
+| [ADR-0007](adr-0007-plugin-manifest-commit-hook-skill-merge-2026-06-20.md) | Plugin Manifest, Commit Hook, Skill Merge | Accepted |
 
 ## Process
 
-- Proposals that need discussion belong in `docs/rfc/` — use `skills/write-rfc`.
-- Once a decision is settled, create an ADR here — use `skills/adr-driven-development`.
+- Proposals that need discussion belong in `docs/rfc/` — use `skills/adr-driven-development` (RFC phase).
+- Once a decision is settled, create an ADR here — use `skills/adr-driven-development` (ADR phase).
 - Existing records are historical artifacts and are not updated only to match
   later template changes.

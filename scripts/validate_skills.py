@@ -82,12 +82,57 @@ def validate_skill(skill_dir: Path) -> list[str]:
     return errors
 
 
+REQUIRED_PLUGIN_KEYS = {"name", "version", "description"}
+
+
+def validate_plugin(repo_root: Path) -> list[str]:
+    errors: list[str] = []
+    plugin_file = repo_root / ".claude-plugin" / "plugin.json"
+    hooks_file = repo_root / "hooks" / "hooks.json"
+
+    if not plugin_file.exists():
+        errors.append(".claude-plugin/plugin.json missing")
+    else:
+        import json
+
+        try:
+            data = json.loads(plugin_file.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            return [f".claude-plugin/plugin.json invalid JSON: {exc}"]
+
+        if not isinstance(data, dict):
+            errors.append(".claude-plugin/plugin.json must be a JSON object")
+        else:
+            missing = REQUIRED_PLUGIN_KEYS - set(data)
+            if missing:
+                errors.append(
+                    f".claude-plugin/plugin.json missing keys: "
+                    f"{', '.join(sorted(missing))}"
+                )
+
+    if not hooks_file.exists():
+        errors.append("hooks/hooks.json missing")
+    else:
+        import json
+
+        try:
+            data = json.loads(hooks_file.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            return [f"hooks/hooks.json invalid JSON: {exc}"]
+
+        if not isinstance(data, dict) or not isinstance(data.get("hooks"), list):
+            errors.append("hooks/hooks.json must be a JSON object with a 'hooks' array")
+
+    return errors
+
+
 def main() -> int:
     if not SKILLS_DIR.exists():
         print("skills/ does not exist yet; nothing to validate")
         return 0
 
     errors: list[str] = []
+    errors.extend(validate_plugin(REPO_ROOT))
     for skill_dir in sorted(path for path in SKILLS_DIR.iterdir() if path.is_dir()):
         errors.extend(validate_skill(skill_dir))
 

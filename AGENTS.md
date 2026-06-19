@@ -27,8 +27,10 @@ The repository follows conventions learned from `pcl-rustic`:
 
 ```text
 .agents/                  # project metadata only; not installable skills
+.claude-plugin/           # Claude Code plugin manifest (plugin.json)
 docs/plans/               # ADRs (settled decisions)
 docs/rfc/                 # RFCs (proposals for discussion)
+hooks/                    # hook scripts and hooks.json descriptor
 scripts/                  # validation and maintenance scripts
 skills/                   # installable skill packages
 Justfile                  # repeatable project commands
@@ -62,8 +64,8 @@ docs/rfc/rfc-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 ```
 
-Use `skills/write-rfc` to draft proposals and `skills/adr-driven-development`
-to record decisions. RFC and ADR IDs are independent sequences.
+Use `skills/adr-driven-development` to draft RFC proposals and to record
+settled decisions as ADRs. RFC and ADR IDs are independent sequences.
 
 Each directory has its own `index.md`. Existing records are historical
 artifacts; do not update old records only because a newer template exists.

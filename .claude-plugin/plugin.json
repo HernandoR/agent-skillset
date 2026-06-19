@@ -1,0 +1,8 @@
+{
+  "name": "agent-skillset",
+  "version": "0.1.0",
+  "description": "Reusable Codex/Claude Code skills for engineering workflows",
+  "author": "HernandoR",
+  "skills_dir": "../skills",
+  "hooks": "../hooks/hooks.json"
+}

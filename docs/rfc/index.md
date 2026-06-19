@@ -3,7 +3,7 @@
 This directory holds RFCs (Requests for Comments) — proposals for design
 discussion that have not yet reached a settled decision.
 
-RFCs use the template at `skills/write-rfc/references/rfc-template.md`.
+RFCs use the template at `skills/adr-driven-development/references/rfc-template.md`.
 
 ## File Naming
 
@@ -28,7 +28,7 @@ rfc-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 
 ## Process
 
-- Use `skills/write-rfc` to draft a new proposal.
+- Use `skills/adr-driven-development` to draft a new proposal (RFC phase).
 - Once discussion converges, create an ADR in `docs/plans/` via
   `skills/adr-driven-development`.
 - Optionally link the resulting ADR back to the RFC for provenance.

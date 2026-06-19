@@ -1,4 +1,4 @@
 interface:
   display_name: "ADR-Driven Development"
-  short_description: "Records architectural decisions that have been made"
-  default_prompt: "Use $adr-driven-development to draft or review an ADR for this settled decision."
+  short_description: "Maintains RFCs (append-only design discussion) and ADRs (the atomically-edited record of design intent)"
+  default_prompt: "Use $adr-driven-development to log design discussion as an RFC or record/update the settled design intent as an ADR."
