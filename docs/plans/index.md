@@ -30,7 +30,7 @@ adr-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 
 ## Process
 
-- Proposals that need discussion belong in `docs/rfc/` — use `skills/write-rfc`.
-- Once a decision is settled, create an ADR here — use `skills/adr-driven-development`.
+- Proposals that need discussion belong in `docs/rfc/` — use `skills/adr-driven-development` (RFC phase).
+- Once a decision is settled, create an ADR here — use `skills/adr-driven-development` (ADR phase).
 - Existing records are historical artifacts and are not updated only to match
   later template changes.

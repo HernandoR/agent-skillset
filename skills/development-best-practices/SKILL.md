@@ -26,8 +26,7 @@ problem.
 
 ## Focused Skills
 
-- `adr-driven-development`: use after a design decision is settled to record it.
-- `write-rfc`: use before a decision is made to propose and discuss ideas.
+- `adr-driven-development`: use to propose a design (RFC phase) or record a settled decision (ADR phase).
 - `context7-docs-first`: use before implementing against unknown external APIs.
 - `typed-interfaces`: use when editing public Python, TypeScript, Rust, or Go
   interfaces.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Write RFC"
-  short_description: "Drafts a structured RFC for design proposals needing discussion"
-  default_prompt: "Use $write-rfc to draft an RFC for this proposal before a decision is made."

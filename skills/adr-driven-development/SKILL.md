@@ -1,66 +1,63 @@
 ---
 name: adr-driven-development
-description: Use when a design decision has been made and should be recorded as a lightweight Architecture Decision Record (ADR) that future contributors can reference.
+description: Use when a design proposal needs discussion before a decision (RFC), or when a decision has been made and should be recorded as a lightweight Architecture Decision Record (ADR) that future contributors can reference.
 ---
 
 # ADR-Driven Development
 
 ## Overview
 
-An Architecture Decision Record (ADR) captures a single design decision that has
-been **made**, along with its context, rationale, and consequences. ADRs are
-lightweight, immutable records — they document what was decided and why, not
-what was discussed along the way.
+This skill covers the full RFC → ADR lifecycle:
 
-Follow the conventions at <https://adr.github.io/>. Each ADR records a
-justified design choice that addresses a functional or non-functional
-requirement significant to the architecture, workflow, or long-term
-maintainability of the project.
+1. **RFC phase** — when a design direction is still open, draft a Request for Comments to surface alternatives, risks, and open questions. An RFC invites discussion; it is not a decision.
+2. **ADR phase** — once the RFC discussion converges (or a decision is made directly), record it as an Architecture Decision Record. An ADR is an immutable record of a settled choice.
 
-## When An ADR Is Needed
+Follow the conventions at <https://adr.github.io/>.
 
-Create an ADR after a decision is **settled** for:
+## When to Use
 
-- Public APIs, data contracts, or cross-language boundaries.
-- Repository layout, validation rules, or development workflow.
-- Skill taxonomy, skill triggering behavior, or shared conventions.
-- Performance claims, benchmark policy, or release gates.
-- Any decision where future contributors may ask "why was it done this way?"
+| Phase | Trigger |
+|---|---|
+| RFC | Design direction is open, multiple viable approaches exist, or architectural reviewers should see reasoning before implementation starts. |
+| ADR | A decision is settled — after RFC convergence, team review, or an individual judgment call. |
 
-Do not create an ADR for:
+Do not use for:
 
 - Narrow typo fixes, internal prose edits, or mechanical metadata updates.
-- Ideas still under discussion — use `write-rfc` for proposals that need
-  broader input before a decision.
+- Decisions that are trivially reversible with zero architectural impact.
 
-## File Convention
-
-Use this project convention unless local instructions override it:
+## File Conventions
 
 ```text
-docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
+docs/rfc/rfc-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md     # RFC proposals
+docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md   # ADR records
 ```
 
-Maintain `docs/plans/index.md` sorted by ADR ID. Never reuse an ID.
+Maintain `docs/rfc/index.md` and `docs/plans/index.md` sorted by their respective IDs. IDs are independent sequences. Never reuse an ID.
 
-## Template
+## Templates
 
-Use `references/adr-template.md` as the starting point. The template follows
-the [Nygard format](https://adr.github.io/) with optional extensions for
-project-specific metadata.
+- RFC: use `references/rfc-template.md`
+- ADR: use `references/adr-template.md`
 
-## Workflow
+## RFC Workflow
 
-1. Once a decision is settled (after RFC discussion, team review, or individual
-   judgment call), check `docs/plans/index.md` for related ADRs.
-2. If the decision is already recorded, do not duplicate. Amend the existing
-   ADR if the decision changed.
-3. Otherwise, create the next ADR file from the bundled template.
-4. Set the status to `accepted` and capture context, decision, and
-   consequences.
+1. Identify a design question that would benefit from structured discussion.
+2. Draft the RFC from `references/rfc-template.md`: problem, alternatives, risks, open questions.
+3. Share with reviewers; update the document as discussion evolves.
+4. Once the discussion converges, create an ADR (see ADR Workflow below) to record the settled outcome.
+5. Optionally link the ADR back to the RFC for full provenance.
+6. Mark the RFC as `Resolved` in `docs/rfc/index.md` with a link to the ADR (do not delete the file).
+
+## ADR Workflow
+
+1. Once a decision is settled, check `docs/plans/index.md` for related ADRs.
+2. If the decision is already recorded, do not duplicate. Amend the existing ADR only if the decision itself changed.
+3. Otherwise, create the next ADR file from `references/adr-template.md`.
+4. Set the status to `accepted`; capture context, decision, and consequences.
 5. Reference the ADR from relevant implementation commits.
 
-## Status Values
+## Status Values (ADR)
 
 - `proposed` — drafted but awaiting final sign-off.
 - `accepted` — the decision is in effect.
@@ -68,22 +65,21 @@ project-specific metadata.
 - `deprecated` — no longer in effect (superseded or withdrawn).
 - `superseded` — replaced by a later ADR (link the replacement).
 
-## ADR vs RFC
+## RFC vs ADR
 
-| | ADR | RFC |
+| | RFC | ADR |
 |---|---|---|
-| Purpose | Record a decision **made** | Propose an idea for **discussion** |
-| Content | Context → Decision → Consequences | Problem → Alternatives → Open Questions |
-| Tone | Declarative, past or present tense | Exploratory, future or conditional tense |
-| Contains | One settled choice + rationale | Multiple viewpoints, discussion process |
-| When | After the decision is settled | Before or during the decision process |
-
-Use `write-rfc` to draft a proposal that needs broader input. Create an ADR
-once the RFC discussion converges on a decision.
+| Purpose | Propose an idea for **discussion** | Record a decision **made** |
+| Content | Problem → Alternatives → Open Questions | Context → Decision → Consequences |
+| Tone | Exploratory, future or conditional tense | Declarative, past or present tense |
+| Contains | Multiple viewpoints, discussion process | One settled choice + rationale |
+| When | Before or during the decision process | After the decision is settled |
 
 ## Common Mistakes
 
+- Skipping the RFC phase for architecturally significant changes.
 - Writing an ADR before the decision is actually settled.
 - Recording every micro-decision instead of architecturally significant ones.
 - Failing to link a superseded ADR to its replacement.
-- Confusing ADR (record of a decision) with RFC (proposal for discussion).
+- Treating an RFC as the final word instead of a discussion artifact.
+- Failing to create a follow-up ADR once an RFC converges.

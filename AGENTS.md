@@ -62,8 +62,8 @@ docs/rfc/rfc-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 ```
 
-Use `skills/write-rfc` to draft proposals and `skills/adr-driven-development`
-to record decisions. RFC and ADR IDs are independent sequences.
+Use `skills/adr-driven-development` to draft RFC proposals and to record
+settled decisions as ADRs. RFC and ADR IDs are independent sequences.
 
 Each directory has its own `index.md`. Existing records are historical
 artifacts; do not update old records only because a newer template exists.
