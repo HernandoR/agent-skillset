@@ -2,8 +2,14 @@
   "hooks": {
     "SessionStart": [
       {
-        "command": "${CLAUDE_PLUGIN_ROOT}/hooks/install-claude-md.sh",
-        "description": "Append commit-reminder rule to ~/.claude/CLAUDE.md on first session after install"
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/install-claude-md.sh",
+            "statusMessage": "Installing commit-reminder rule..."
+          }
+        ]
       }
     ]
   }
