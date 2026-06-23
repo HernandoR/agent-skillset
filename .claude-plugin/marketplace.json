@@ -1,0 +1,31 @@
+{
+  "name": "agent-skillset",
+  "owner": {
+    "name": "HernandoR",
+    "email": "hernando@mewtant.io"
+  },
+  "description": "Reusable Claude Code skills for engineering workflows",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "discuss",
+      "source": "./plugins/discuss",
+      "description": "ADR-driven development, agent spec conventions, and decision grilling"
+    },
+    {
+      "name": "implement",
+      "source": "./plugins/implement",
+      "description": "Python tooling: uv, pydantic config, loguru logging, typed interfaces, path config"
+    },
+    {
+      "name": "dev_loop",
+      "source": "./plugins/dev_loop",
+      "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, and best practices"
+    },
+    {
+      "name": "fetch_external_knowledge",
+      "source": "./plugins/fetch_external_knowledge",
+      "description": "Code intelligence and docs-first external knowledge retrieval"
+    }
+  ]
+}

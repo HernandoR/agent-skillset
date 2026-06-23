@@ -1,0 +1,6 @@
+{
+  "name": "implement",
+  "version": "0.1.0",
+  "description": "Python tooling: uv, pydantic config, loguru logging, typed interfaces, path config",
+  "skills": "./skills"
+}

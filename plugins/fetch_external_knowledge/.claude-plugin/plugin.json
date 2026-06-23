@@ -1,0 +1,6 @@
+{
+  "name": "fetch_external_knowledge",
+  "version": "0.1.0",
+  "description": "Code intelligence and docs-first external knowledge retrieval",
+  "skills": "./skills"
+}
