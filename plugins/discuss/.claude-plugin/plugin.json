@@ -1,0 +1,6 @@
+{
+  "name": "discuss",
+  "version": "0.1.0",
+  "description": "ADR-driven development, agent spec conventions, and decision grilling",
+  "skills": "./skills"
+}
