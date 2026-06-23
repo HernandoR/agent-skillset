@@ -1,6 +1,6 @@
 {
   "name": "dev_loop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, and best practices",
   "skills": "./skills",
   "hooks": "./hooks/hooks.json"
