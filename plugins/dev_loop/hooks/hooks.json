@@ -1,7 +1,7 @@
 {
   "hooks": [
     {
-      "event": "Stop",
+      "event": "SessionEnd",
       "command": "${CLAUDE_PLUGIN_ROOT}/hooks/commit-reminder.sh",
       "description": "Warn about uncommitted tracked changes when a session ends"
     }
