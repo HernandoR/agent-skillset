@@ -1,9 +1,9 @@
 {
   "hooks": [
     {
-      "event": "SessionEnd",
-      "command": "${CLAUDE_PLUGIN_ROOT}/hooks/commit-reminder.sh",
-      "description": "Warn about uncommitted tracked changes when a session ends"
+      "event": "SessionStart",
+      "command": "${CLAUDE_PLUGIN_ROOT}/hooks/install-claude-md.sh",
+      "description": "Append commit-reminder rule to ~/.claude/CLAUDE.md on first session after install"
     }
   ]
 }
