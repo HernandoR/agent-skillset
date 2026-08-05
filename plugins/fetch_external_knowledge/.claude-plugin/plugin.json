@@ -1,6 +1,20 @@
 {
   "name": "fetch_external_knowledge",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Code intelligence and docs-first external knowledge retrieval",
-  "skills": "./skills"
+  "keywords": ["codegraph", "context7", "docs", "code-search"],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Fetch External Knowledge",
+    "shortDescription": "Pull in what the session does not know: code graph queries and current library docs",
+    "longDescription": "Skills for closing knowledge gaps before writing code. Query an indexed code graph to find symbols, trace call paths, and scope the impact of a change, and fetch current documentation for external libraries and APIs instead of relying on training data that may be out of date.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "defaultPrompt": [
+      "Trace how this function gets called.",
+      "Check the current docs for this API.",
+      "What would break if I change this signature?"
+    ]
+  }
 }

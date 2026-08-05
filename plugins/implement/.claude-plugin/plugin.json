@@ -1,6 +1,20 @@
 {
   "name": "implement",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Python tooling: uv, pydantic config, loguru logging, typed interfaces, path config",
-  "skills": "./skills"
+  "keywords": ["python", "uv", "pydantic", "loguru", "typing"],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Implement",
+    "shortDescription": "Python project tooling: uv, typed config trees, loguru, path centralization",
+    "longDescription": "Skills for writing the code. Drive Python projects through uv, collapse scattered settings into one typed pydantic config tree, route all diagnostics through loguru including third-party stdlib loggers, treat public interfaces as typed contracts, and keep filesystem paths in a single config instead of inline literals.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Set this project up with uv.",
+      "Collapse these scattered settings into one typed config.",
+      "Replace these print calls with structured logging."
+    ]
+  }
 }

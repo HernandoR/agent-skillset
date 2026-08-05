@@ -5,12 +5,12 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.1.3",
+  "version": "0.3.0",
   "plugins": [
     {
       "name": "discuss",
       "source": "./plugins/discuss",
-      "description": "ADR-driven development, agent spec conventions, and decision grilling"
+      "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts"
     },
     {
       "name": "implement",
