@@ -5,7 +5,7 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "plugins": [
     {
       "name": "discuss",

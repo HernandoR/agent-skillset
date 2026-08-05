@@ -7,9 +7,13 @@ used as the installable skill payload location.
 
 ## Project Overview
 
-This repository contains reusable Codex skills. Installable skill packages live
-under top-level `skills/<skill-name>/`. Each skill is independent, but related
-skills may cross-reference each other.
+This repository distributes reusable agent skills as a plugin marketplace.
+Skills are grouped into **bundles** (plugins) under
+`plugins/<bundle>/skills/<skill-name>/`; the root `.claude-plugin/marketplace.json`
+lists the bundles. Each skill is independent and must stand alone when loaded by
+itself, but related skills may cross-reference each other.
+
+Current bundles: `discuss`, `implement`, `dev_loop`, `fetch_external_knowledge`.
 
 The repository follows conventions learned from `pcl-rustic`:
 
@@ -27,26 +31,31 @@ The repository follows conventions learned from `pcl-rustic`:
 ## Repository Map
 
 ```text
-.agents/                  # project metadata and rule specs; not installable skills
-.agents/spec/             # agent-facing project rules, mirrored in AGENTS.md
-.claude-plugin/           # Claude Code plugin manifest (plugin.json)
-docs/plans/               # ADRs (settled decisions)
-docs/rfc/                 # RFCs (proposals for discussion)
-hooks/                    # hook scripts and hooks.json descriptor
-scripts/                  # validation and maintenance scripts
-skills/                   # installable skill packages
-Justfile                  # repeatable project commands
-pyproject.toml            # uv-managed Python tooling metadata
+.agents/                             # repo metadata and rule specs; not installable skills
+.agents/spec/                        # agent-facing project rules, mirrored in AGENTS.md
+.claude-plugin/marketplace.json      # marketplace manifest listing every bundle
+plugins/<bundle>/                    # one installable plugin per bundle
+  .claude-plugin/plugin.json         #   bundle manifest (name, version, description)
+  skills/<skill-name>/               #   the bundle's skills
+  hooks/                             #   optional hooks.json descriptor and scripts
+docs/plans/                          # ADRs (settled decisions)
+docs/rfc/                            # RFCs (proposals for discussion)
+scripts/                             # validation and maintenance scripts
+Justfile                             # repeatable project commands
+pyproject.toml                       # uv-managed Python tooling metadata
 ```
+
+Only `dev_loop` currently ships hooks. There is no top-level `skills/` or
+`hooks/` directory — both moved under `plugins/` in ADR-0007.
 
 ## Skill Layout
 
 Each skill must use this shape:
 
 ```text
-skills/<skill-name>/
-  SKILL.md
-  agents/openai.yaml
+plugins/<bundle>/skills/<skill-name>/
+  SKILL.md                # required; frontmatter + body
+  agents/openai.yaml      # required; interface descriptor for non-Claude harnesses
   references/             # optional bundled resources
   scripts/                # optional deterministic helpers
   assets/                 # optional output assets
@@ -55,6 +64,9 @@ skills/<skill-name>/
 `SKILL.md` frontmatter must include `name` and `description`. The folder name
 must match the `name`. Descriptions should describe triggering conditions, not
 summarize the workflow.
+
+`agents/openai.yaml` must define `interface` with `display_name`,
+`short_description`, and `default_prompt`. `just validate` enforces both files.
 
 ## Project Rules
 
@@ -82,8 +94,8 @@ docs/rfc/rfc-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md
 ```
 
-Use `skills/adr-driven-development` to draft RFC proposals and to record
-settled decisions as ADRs. RFC and ADR IDs are independent sequences.
+Use `plugins/discuss/skills/adr-driven-development` to draft RFC proposals and
+to record settled decisions as ADRs. RFC and ADR IDs are independent sequences.
 
 Each directory has its own `index.md`. Existing records are historical
 artifacts; do not update old records only because a newer template exists.
@@ -93,13 +105,29 @@ artifacts; do not update old records only because a newer template exists.
 Prefer `just` recipes over raw tool commands.
 
 ```bash
-just validate
-just fmt
-just ci
+just validate   # skill/plugin manifests + .agents/spec schema and AGENTS.md mirror
+just fmt        # ruff format scripts
+just lint       # ruff check scripts
+just ci         # fmt + lint + validate
 ```
 
 Python commands in this repo should run through `uv`, for example
 `uv run python scripts/validate_skills.py`.
+
+## Versioning
+
+Two manifests carry versions, and both are semver:
+
+- `plugins/<bundle>/.claude-plugin/plugin.json` — bump when that bundle's
+  payload changes. Minor for a new or removed skill or a behavioural change to
+  an existing one; patch for wording, typo, and reference-file fixes.
+- `.claude-plugin/marketplace.json` — bump on every published change, taking
+  the highest bump among the bundles touched. Patch for repo-level changes that
+  ship no bundle payload (this file, `README.md`, `scripts/`, `Justfile`).
+
+Never publish a payload change without a bump: installed copies are resolved by
+version, so an unbumped edit does not reach anyone who already installed the
+bundle.
 
 ## Git Conventions
 
