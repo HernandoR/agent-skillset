@@ -115,6 +115,30 @@ docs/plans/adr-{NNNN}-{kebab-title}-{YYYY-MM-DD}.md   # ADR design records
 Maintain `docs/rfc/index.md` and `docs/plans/index.md` sorted by their
 respective IDs. The two ID sequences are independent. Never reuse an ID.
 
+## Language
+
+RFCs and ADRs are durable artifacts, so **they are written in English** — the
+title, the body, the status values, the index entries — no matter what language
+the discussion that produced them was held in. A design debate conducted in
+Chinese still yields an English RFC. The reader you are writing for is a future
+contributor or a fresh agent session that shares neither today's context nor
+today's language.
+
+When a Chinese (or otherwise localized) rendering is wanted, the English record
+stays authoritative and the translation is **attached** to it as a labelled
+reading transcript:
+
+```text
+docs/plans/adr-0012-cache-strategy-2026-08-05.md          # authoritative
+docs/plans/adr-0012-cache-strategy-2026-08-05.zh-CN.md    # transcript
+```
+
+Alternatively, append an `## Appendix: 中文译本 (reading transcript)` section to
+the English file. Either way the transcript notes that English wins on
+disagreement, and `index.md`, cross-references, and `superseded_by` pointers
+always name the English file — never the transcript. See the
+`english-only-artifacts` skill for the full rule.
+
 ## Templates
 
 - RFC: `references/rfc-template.md`
@@ -150,3 +174,5 @@ respective IDs. The two ID sequences are independent. Never reuse an ID.
 - Recording every micro-decision instead of architecturally significant ones.
 - Putting implementation steps or task checkboxes into an ADR — that's
   execution state, which belongs in external memory / a planning skill.
+- Writing the record in the discussion's language instead of English, or
+  indexing the translated transcript in place of the English original.

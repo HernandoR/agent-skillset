@@ -18,6 +18,8 @@ walk the decision tree, and provide a recommended answer for each question.
   instead of asking the user.
 - Resolve dependencies in order: a downstream question waits until its upstream
   decision is settled.
+- Ask in whatever language the user is using; write every settled answer down
+  in English (see Language).
 - Stop when the remaining work can be implemented without guessing.
 
 ## Question Shape
@@ -27,6 +29,18 @@ Question N: {specific decision}
 
 Recommended answer: {default with reasoning and consequence}
 ```
+
+## Language
+
+Grilling is a conversation, so **ask** in the user's language — including
+Chinese if that is what they are using. The **record** of what was decided is
+an artifact, so write it in English: the RFC or ADR entry, the plan, the task
+list, the code comment that captures a resolved constraint.
+
+Being asked to grill in Chinese is not permission to write the outcome in
+Chinese. If a Chinese rendering of the decision record is wanted, the English
+version stays authoritative and the translation is attached to it as a labelled
+transcript. See the `english-only-artifacts` skill for the full rule.
 
 ## Exploration Before Asking
 
@@ -45,4 +59,6 @@ instructions before asking about:
 - Asking bundles of questions that hide dependencies.
 - Treating "sounds good" as agreement to unrelated decisions.
 - Asking the user to answer things the codebase already states.
+- Writing the decision record in the language of the discussion instead of
+  English.
 
