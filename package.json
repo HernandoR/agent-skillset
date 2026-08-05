@@ -1,0 +1,18 @@
+{
+  "name": "agent-skillset",
+  "version": "0.3.0",
+  "description": "Reusable agent skills for engineering workflows — loadable by Claude Code, Codex, and Pi",
+  "keywords": [
+    "pi-package",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "pi"
+  ],
+  "repository": "https://github.com/HernandoR/agent-skillset",
+  "pi": {
+    "skills": [
+      "./plugins/*/skills"
+    ]
+  }
+}
