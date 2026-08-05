@@ -1,6 +1,20 @@
 {
   "name": "discuss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts",
-  "skills": "./skills"
+  "keywords": ["adr", "rfc", "design", "conventions", "documentation"],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Discuss",
+    "shortDescription": "Design-time reasoning: RFCs, ADRs, project rules, and decision grilling",
+    "longDescription": "Skills for the design phase. Grill a plan until the branching decisions are settled, log the discussion as an append-only RFC, record the outcome as an atomically-edited ADR, publish project rules where any harness will find them, and keep every written artifact in English regardless of the conversation language.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Grill this plan before I implement it.",
+      "Record this decision as an ADR.",
+      "Put this project rule where every agent finds it."
+    ]
+  }
 }

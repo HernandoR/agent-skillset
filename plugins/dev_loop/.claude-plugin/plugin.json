@@ -1,6 +1,20 @@
 {
   "name": "dev_loop",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, and best practices",
-  "skills": "./skills"
+  "keywords": ["git", "worktree", "tdd", "just", "verification"],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Dev Loop",
+    "shortDescription": "The development loop: worktrees, TDD plans, Justfile recipes, verification, merge",
+    "longDescription": "Skills for executing the work. Start isolated feature work in a worktree, split an accepted ADR into red-test-then-implement steps, wrap repeatable commands in a Justfile, commit each verified step with a conventional subject, prove completion before claiming it, and decide what happens to the branch at the end.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Turn this ADR into a TDD checkbox plan.",
+      "Start this feature in a clean worktree.",
+      "Verify this is really done before I merge."
+    ]
+  }
 }
