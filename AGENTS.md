@@ -42,6 +42,7 @@ docs/plans/                          # ADRs (settled decisions)
 docs/rfc/                            # RFCs (proposals for discussion)
 scripts/                             # validation and maintenance scripts
 Justfile                             # repeatable project commands
+package.json                         # Pi package manifest (pi.skills); not an npm app
 pyproject.toml                       # uv-managed Python tooling metadata
 ```
 
@@ -67,6 +68,40 @@ summarize the workflow.
 
 `agents/openai.yaml` must define `interface` with `display_name`,
 `short_description`, and `default_prompt`. `just validate` enforces both files.
+
+## Harness Compatibility
+
+The tree is consumed by three harnesses and must stay loadable by all of them.
+
+| Harness | Reads | Notes |
+|---|---|---|
+| Claude Code | `.claude-plugin/marketplace.json` → `plugins/<bundle>/.claude-plugin/plugin.json` | Primary distribution path. |
+| Codex | `plugins/<bundle>/.claude-plugin/plugin.json` | Second entry in Codex's manifest search order, so no Codex-specific manifest is needed. |
+| Pi | root `package.json` → `pi.skills` glob | Needs the `pi-package` keyword to be gallery-discoverable. |
+
+Rules that follow from this:
+
+- **The skill directory shape is the shared contract.** `SKILL.md` with `name`
+  and `description` frontmatter is what all three load; `agents/openai.yaml`,
+  `references/`, `scripts/`, and `assets/` match Codex's documented layout.
+  Do not introduce a harness-specific skill layout.
+- **`plugins/` is the single source of truth.** No mirrored or generated skill
+  trees per harness — compatibility is achieved with manifests, not copies.
+- **Bundle manifests are restricted to fields Codex recognises**: `name`,
+  `version`, `description`, `keywords`, `skills`, `mcpServers`, `apps`,
+  `hooks`, `interface`. Notably `author`, `license`, `homepage`, and
+  `repository` are *not* among them; developer attribution goes in
+  `interface.developerName`. `just validate` rejects anything else.
+- **`interface` is required on every bundle manifest** with `displayName`,
+  `shortDescription`, `longDescription`, `developerName`, `category`, and
+  `capabilities`, plus `defaultPrompt` (at most 3 entries, each ≤ 128
+  characters).
+- **The root marketplace file stays Claude-format.** Codex's marketplace schema
+  wants an object-form `source` plus a `policy` block, which the Claude schema
+  does not accept. Codex users install per-bundle instead of via a marketplace;
+  do not add a second marketplace file.
+- **`pi.skills` must cover every bundle.** `just validate` fails if a bundle's
+  `skills/` directory is not matched by a glob in `package.json`.
 
 ## Project Rules
 
@@ -124,6 +159,9 @@ Two manifests carry versions, and both are semver:
 - `.claude-plugin/marketplace.json` — bump on every published change, taking
   the highest bump among the bundles touched. Patch for repo-level changes that
   ship no bundle payload (this file, `README.md`, `scripts/`, `Justfile`).
+
+The root `package.json` version must equal the marketplace version — it is the
+same release, just the Pi-facing manifest. `just validate` enforces this.
 
 Never publish a payload change without a bump: installed copies are resolved by
 version, so an unbumped edit does not reach anyone who already installed the
