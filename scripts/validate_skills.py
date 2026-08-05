@@ -11,7 +11,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PLUGINS_DIR = REPO_ROOT / "plugins"
 REQUIRED_OPENAI_KEYS = {"display_name", "short_description", "default_prompt"}
 REQUIRED_PLUGIN_KEYS = {"name", "version", "description"}
-COMPONENT_PATH_FIELDS = {"skills", "commands", "agents", "hooks", "mcpServers", "lspServers"}
+COMPONENT_PATH_FIELDS = {
+    "skills",
+    "commands",
+    "agents",
+    "hooks",
+    "mcpServers",
+    "lspServers",
+}
 
 
 def load_frontmatter(path: Path) -> dict[str, Any]:
@@ -90,7 +97,9 @@ def validate_plugin_dir(plugin_dir: Path) -> list[str]:
     plugin_file = plugin_dir / ".claude-plugin" / "plugin.json"
 
     if not plugin_file.exists():
-        return [f"{plugin_dir.relative_to(REPO_ROOT)}/.claude-plugin/plugin.json missing"]
+        return [
+            f"{plugin_dir.relative_to(REPO_ROOT)}/.claude-plugin/plugin.json missing"
+        ]
 
     try:
         data = json.loads(plugin_file.read_text(encoding="utf-8"))
@@ -108,15 +117,11 @@ def validate_plugin_dir(plugin_dir: Path) -> list[str]:
             )
         for field in COMPONENT_PATH_FIELDS & set(data):
             value = data[field]
+            rel = plugin_file.relative_to(REPO_ROOT)
             if not isinstance(value, str):
-                errors.append(
-                    f"{plugin_file.relative_to(REPO_ROOT)} {field!r} must be a string path"
-                )
+                errors.append(f"{rel} {field!r} must be a string path")
             elif not value.startswith("./"):
-                errors.append(
-                    f"{plugin_file.relative_to(REPO_ROOT)} {field!r} must start with './' "
-                    f"(got {value!r})"
-                )
+                errors.append(f"{rel} {field!r} must start with './' (got {value!r})")
 
     return errors
 
@@ -142,12 +147,15 @@ def validate_marketplace(repo_root: Path) -> list[str]:
     missing = required - set(data)
     if missing:
         errors.append(
-            f".claude-plugin/marketplace.json missing keys: {', '.join(sorted(missing))}"
+            ".claude-plugin/marketplace.json missing keys: "
+            f"{', '.join(sorted(missing))}"
         )
 
     owner = data.get("owner")
     if not isinstance(owner, dict) or not isinstance(owner.get("name"), str):
-        errors.append(".claude-plugin/marketplace.json owner must be an object with 'name'")
+        errors.append(
+            ".claude-plugin/marketplace.json owner must be an object with 'name'"
+        )
 
     plugins = data.get("plugins", [])
     if not isinstance(plugins, list):
@@ -155,7 +163,9 @@ def validate_marketplace(repo_root: Path) -> list[str]:
     else:
         for i, plugin in enumerate(plugins):
             if not isinstance(plugin, dict):
-                errors.append(f".claude-plugin/marketplace.json plugins[{i}] must be an object")
+                errors.append(
+                    f".claude-plugin/marketplace.json plugins[{i}] must be an object"
+                )
                 continue
             for key in ("name", "source"):
                 if key not in plugin:
@@ -165,7 +175,8 @@ def validate_marketplace(repo_root: Path) -> list[str]:
             source = plugin.get("source", "")
             if isinstance(source, str) and not source.startswith("./"):
                 errors.append(
-                    f".claude-plugin/marketplace.json plugins[{i}].source must start with './'"
+                    f".claude-plugin/marketplace.json plugins[{i}].source "
+                    "must start with './'"
                 )
 
     return errors
