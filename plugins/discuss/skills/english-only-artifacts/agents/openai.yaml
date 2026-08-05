@@ -1,0 +1,4 @@
+interface:
+  display_name: "English-Only Written Artifacts"
+  short_description: "Keeps docs, comments, and commits in English no matter what language the conversation uses"
+  default_prompt: "Use $english-only-artifacts before writing any document, comment, or commit message, especially when this conversation is not in English."

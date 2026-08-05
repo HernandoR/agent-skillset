@@ -22,9 +22,9 @@ claude plugin install fetch_external_knowledge@agent-skillset
 ## Bundles
 
 ### discuss
-Design-time reasoning — ADRs, RFCs, agent spec conventions, and decision grilling.
+Design-time reasoning — ADRs, RFCs, agent spec conventions, decision grilling, and the English-only artifact rule.
 
-Skills: `adr-driven-development`, `agent-spec-convention`, `decision-grilling`
+Skills: `adr-driven-development`, `agent-spec-convention`, `decision-grilling`, `english-only-artifacts`
 
 ### implement
 Python project tooling — uv workflows, pydantic config trees, loguru logging, typed interfaces, and centralized path config.

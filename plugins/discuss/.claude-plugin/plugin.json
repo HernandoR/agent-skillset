@@ -1,6 +1,6 @@
 {
   "name": "discuss",
-  "version": "0.1.0",
-  "description": "ADR-driven development, agent spec conventions, and decision grilling",
+  "version": "0.2.0",
+  "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts",
   "skills": "./skills"
 }
