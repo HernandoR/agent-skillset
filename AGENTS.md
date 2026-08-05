@@ -2,8 +2,8 @@
 
 Guidance for AI coding agents working in this skills repository. Human-facing
 project documentation should stay in tracked docs; `.agents/` is reserved for
-metadata about this repository and must not be used as the installable skill
-payload location.
+metadata about this repository and its agent-facing rule specs, and must not be
+used as the installable skill payload location.
 
 ## Project Overview
 
@@ -22,11 +22,13 @@ The repository follows conventions learned from `pcl-rustic`:
 - Prefer `uv` for Python tooling and `just` for repeatable commands.
 - Resolve open design questions before implementation.
 - Commit each verified step instead of batching unrelated work.
+- Write every durable artifact in English, whatever language the session uses.
 
 ## Repository Map
 
 ```text
-.agents/                  # project metadata only; not installable skills
+.agents/                  # project metadata and rule specs; not installable skills
+.agents/spec/             # agent-facing project rules, mirrored in AGENTS.md
 .claude-plugin/           # Claude Code plugin manifest (plugin.json)
 docs/plans/               # ADRs (settled decisions)
 docs/rfc/                 # RFCs (proposals for discussion)
@@ -53,6 +55,22 @@ skills/<skill-name>/
 `SKILL.md` frontmatter must include `name` and `description`. The folder name
 must match the `name`. Descriptions should describe triggering conditions, not
 summarize the workflow.
+
+## Project Rules
+
+Rules live in `.agents/spec/<rule>.md` with a summary mirrored below. Run
+`just validate` to check the schema and the mirror.
+
+### English-Only Written Artifacts
+
+Every durable written artifact — documentation, code comments, docstrings,
+commit messages, PR text, log and error strings — is written in English,
+regardless of the language the conversation is being held in. Interaction
+language follows the user; artifact language does not. A localized rendering is
+attached to the English original as a labelled reading transcript, and indexes
+always link the English file.
+
+Full spec: [.agents/spec/english-only-artifacts.md](.agents/spec/english-only-artifacts.md)
 
 ## ADR and RFC Workflow
 
@@ -88,7 +106,9 @@ Python commands in this repo should run through `uv`, for example
 - Use short-lived branches when practical.
 - Commit each verified logical step.
 - Commit subject format: `<type>(<scope>): <subject>`.
-- Use Chinese commit subjects for local consistency with the originating
-  project conventions.
+- Write commit subjects and bodies in English, per the English-Only Written
+  Artifacts rule above. This supersedes the earlier Chinese-subject convention
+  inherited from the originating project; existing Chinese subjects in history
+  stay as they are.
 - Do not skip verification before claiming work is complete.
 
