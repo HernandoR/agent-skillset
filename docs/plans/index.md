@@ -27,9 +27,10 @@ adr-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 | [ADR-0004](adr-0004-loguru-first-logging-2026-06-03.md) | Loguru-First Logging Skill | Accepted |
 | [ADR-0005](adr-0005-agent-spec-convention-2026-06-03.md) | Agent Spec Convention Skill | Accepted |
 | [ADR-0006](adr-0006-tdd-checkbox-plans-2026-06-03.md) | TDD Checkbox Plans Skill (Advisory) | Accepted |
-| [ADR-0007](adr-0007-plugin-manifest-commit-hook-skill-merge-2026-06-20.md) | Plugin Manifest, Commit Hook, Skill Merge | Accepted |
+| [ADR-0007](adr-0007-plugin-manifest-commit-hook-skill-merge-2026-06-20.md) | Plugin Manifest, Commit Hook, Skill Merge | Accepted (commit hook superseded by ADR-0010) |
 | [ADR-0008](adr-0008-english-only-artifacts-2026-08-05.md) | English-Only Written Artifacts | Accepted |
 | [ADR-0009](adr-0009-multi-harness-plugin-compatibility-2026-08-05.md) | Multi-Harness Plugin Compatibility (Codex and Pi) | Accepted |
+| [ADR-0010](adr-0010-remove-commit-reminder-hook-2026-08-07.md) | Remove the Commit-Reminder Hook | Accepted |
 
 ## Process
 

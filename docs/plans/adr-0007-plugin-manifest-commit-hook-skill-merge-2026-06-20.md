@@ -32,7 +32,9 @@ record (ADR)"*. The `rfc-template.md` moves to
 `AGENTS.md`, `docs/rfc/index.md`, `docs/plans/index.md`, and
 `skills/development-best-practices/SKILL.md` are updated.
 
-**Commit-reminder hook.** Add `hooks/hooks.json` (Stop event descriptor) and
+**Commit-reminder hook.** *(Superseded by [ADR-0010](adr-0010-remove-commit-reminder-hook-2026-08-07.md),
+which removes the hook. What shipped also diverged from what is described
+below.)* Add `hooks/hooks.json` (Stop event descriptor) and
 `hooks/commit-reminder.sh`. The script runs `git status --porcelain`, filters
 to tracked-only changes, and prints a human-readable reminder to stderr.
 It always exits 0 (warn-only, never blocks). It is referenced via
@@ -47,5 +49,6 @@ It always exits 0 (warn-only, never blocks). It is referenced via
   accidentally deleted.
 - The commit reminder surfaces uncommitted work at session end without
   preventing any action — zero friction cost, moderate safety benefit.
+  *(Did not hold: see ADR-0010.)*
 - ADR-0001 recorded the original split of `write-rfc` as a separate skill;
   this ADR supersedes that aspect of ADR-0001.

@@ -37,7 +37,6 @@ The repository follows conventions learned from `pcl-rustic`:
 plugins/<bundle>/                    # one installable plugin per bundle
   .claude-plugin/plugin.json         #   bundle manifest (name, version, description)
   skills/<skill-name>/               #   the bundle's skills
-  hooks/                             #   optional hooks.json descriptor and scripts
 docs/plans/                          # ADRs (settled decisions)
 docs/rfc/                            # RFCs (proposals for discussion)
 scripts/                             # validation and maintenance scripts
@@ -46,8 +45,10 @@ package.json                         # Pi package manifest (pi.skills); not an n
 pyproject.toml                       # uv-managed Python tooling metadata
 ```
 
-Only `dev_loop` currently ships hooks. There is no top-level `skills/` or
-`hooks/` directory — both moved under `plugins/` in ADR-0007.
+No bundle ships hooks. Skills state their rules and let the agent apply them;
+this repo does not install hooks that edit a user's global configuration or act
+on their repository without being asked (ADR-0010). There is no top-level
+`skills/` directory — it moved under `plugins/` in ADR-0007.
 
 ## Skill Layout
 
