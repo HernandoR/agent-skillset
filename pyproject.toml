@@ -2,7 +2,7 @@
 name = "skills-repo"
 version = "0.1.0"
 description = "Managed repository for reusable Codex skills"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "pyyaml>=6.0.2",
 ]
@@ -14,7 +14,7 @@ dev = [
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

@@ -1,0 +1,29 @@
+{
+  "name": "codex_deepseek_subagent",
+  "version": "0.3.0",
+  "description": "Offline installer for the DeepSeek V4 Flash custom subagent for Codex",
+  "keywords": [
+    "codex",
+    "deepseek",
+    "subagent",
+    "hooks",
+    "installer",
+    "offline"
+  ],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Codex DeepSeek Subagent",
+    "shortDescription": "Install the DeepSeek V4 Flash subagent, handoff skill, and Hook into Codex, fully offline",
+    "longDescription": "An offline, idempotent installer for the Utopia-V/codex-deepseek-subagent payload. The upstream files (agent TOML, use-v4-flash-worker handoff skill, SubagentStart plaintext-handoff Hook, AGENTS.md routing block, protocol tests) are vendored at a pinned commit with sha256 manifest, and a bundled stdlib-only install.py performs plan-first installation with one clearance, offline verification, and a redacted report - no GitHub access, no plaintext keys, no paid calls, Hook trust left to the user.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Install the DeepSeek V4 Flash subagent into my Codex configuration.",
+      "Re-run the v4-flash-worker installer and show me what changed."
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install Codex DeepSeek Subagent"
+  short_description: "Installs the DeepSeek V4 Flash subagent, handoff skill, and Hook into Codex"
+  default_prompt: "Use $install-codex-deepseek-subagent to install the DeepSeek V4 Flash worker into my Codex configuration."

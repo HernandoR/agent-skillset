@@ -13,7 +13,8 @@ Skills are grouped into **bundles** (plugins) under
 lists the bundles. Each skill is independent and must stand alone when loaded by
 itself, but related skills may cross-reference each other.
 
-Current bundles: `discuss`, `implement`, `dev_loop`, `fetch_external_knowledge`.
+Current bundles: `discuss`, `implement`, `dev_loop`, `fetch_external_knowledge`,
+`codex_deepseek_subagent`.
 
 The repository follows conventions learned from `pcl-rustic`:
 

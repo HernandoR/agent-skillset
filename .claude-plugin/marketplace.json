@@ -5,7 +5,7 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.4.0",
+  "version": "0.7.0",
   "plugins": [
     {
       "name": "discuss",
@@ -26,6 +26,11 @@
       "name": "fetch_external_knowledge",
       "source": "./plugins/fetch_external_knowledge",
       "description": "Code intelligence and docs-first external knowledge retrieval"
+    },
+    {
+      "name": "codex_deepseek_subagent",
+      "source": "./plugins/codex_deepseek_subagent",
+      "description": "Offline installer for the DeepSeek V4 Flash custom subagent for Codex"
     }
   ]
 }

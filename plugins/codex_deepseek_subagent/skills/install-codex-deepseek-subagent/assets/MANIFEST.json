@@ -1,0 +1,22 @@
+{
+  "upstream": "https://github.com/Utopia-V/codex-deepseek-subagent",
+  "commit": "2f00a590565a4a7316e931d7cf626ef19f1964ef",
+  "commit_date": "2026-08-05T16:03:45Z",
+  "fetched": "2026-08-07",
+  "license": "MIT",
+  "files": {
+    "LICENSE": "210d6002fee9b14e4292bed5fd51010e34d4622224861e45b26fed86b8e87ff0",
+    "agents/v4-flash-worker.toml": "32caffe2a38396daa32209f113d527d7ba88e5502bdccc99a1960964c447f036",
+    "agents/windows-live-env/v4-flash-worker.toml": "5b607db45d8563222141d2e3f8fcbe59f496e957bc3bd182855eae381bad0732",
+    "hooks/hooks.posix.example.json": "f9346ee869aa3539c09454d45e2b4be0d4ff3c1b487003e70d1025946ab46bfd",
+    "hooks/hooks.windows.example.json": "ea0addd68fd238e64ab87b04fcfb82213e5e239e68ab0e5814c461cc919ac717",
+    "hooks/plaintext-handoff.ps1": "5f85962e9ff506b05017514b046131f4754bf7847831873aa2ae0e1fbdf3e0b5",
+    "hooks/plaintext_handoff.py": "6ef11b57dfedba950ebd69f30edffc25480072d384968f1410c574db94dda634",
+    "prompts/quick-smoke-test.md": "cdd1bb857ff3778f42703f77c344aba6e7cff2e2acee6c22dad9672dce10b398",
+    "skills/use-v4-flash-worker/SKILL.md": "f23ccd6603949b6c67e3bcf9b224f9ab3ba41b7f549eb6bb9364a4dbe112f064",
+    "skills/use-v4-flash-worker/agents/openai.yaml": "e3abd45f2aaa745a37c3563c44d1404a07a7ff1f32bf8f7376e1b26cae23317a",
+    "snippets/AGENTS.md": "8a7124d9719a2c1e782f8c2f276d5eefa2bb8bbb1fdbf77c251fe2538bdf706d",
+    "tests/plaintext-handoff.windows.ps1": "cbb9bb261a931dd3c322e203f88caf321721a6441f026d815ec955db4391baf0",
+    "tests/test_plaintext_handoff.py": "2165791bf1518e8623963e379cbf8243cf02d17d926d453e8772d8afc9b37855"
+  }
+}

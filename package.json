@@ -1,7 +1,7 @@
 {
   "name": "agent-skillset",
-  "version": "0.4.0",
-  "description": "Reusable agent skills for engineering workflows — loadable by Claude Code, Codex, and Pi",
+  "version": "0.7.0",
+  "description": "Reusable agent skills for engineering workflows \u2014 loadable by Claude Code, Codex, and Pi",
   "keywords": [
     "pi-package",
     "agent-skills",

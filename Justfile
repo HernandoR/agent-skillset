@@ -6,6 +6,7 @@ default:
 validate:
     uv run python scripts/validate_skills.py
     uv run python scripts/validate_agent_specs.py --check-mirror
+    uv run python scripts/validate_vendored.py
 
 fmt:
     uv run ruff format scripts
