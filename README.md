@@ -1,6 +1,6 @@
 # agent-skillset
 
-Reusable agent skills for engineering workflows, distributed as a plugin marketplace. Loadable by **Claude Code**, **Codex**, and **Pi** from the same tree — every skill is a directory with a `SKILL.md` (`name` + `description` frontmatter), an `agents/openai.yaml` interface descriptor, and optional `references/`, `scripts/`, and `assets/`.
+Reusable agent skills for engineering workflows, distributed as a plugin marketplace. Loadable by **Claude Code**, **Codex**, **Pi**, and any **Agent Plugins** client from the same tree — every skill is a directory with a `SKILL.md` (`name` + `description` frontmatter), an `agents/openai.yaml` interface descriptor, and optional `references/`, `scripts/`, and `assets/`.
 
 ## Installation
 
@@ -17,9 +17,19 @@ Then install the bundles you need:
 ```
 claude plugin install discuss@agent-skillset
 claude plugin install implement@agent-skillset
-claude plugin install dev_loop@agent-skillset
-claude plugin install fetch_external_knowledge@agent-skillset
+claude plugin install dev-loop@agent-skillset
+claude plugin install fetch-external-knowledge@agent-skillset
+claude plugin install codex-deepseek-subagent@agent-skillset
 ```
+
+### Agent Plugins
+
+Each bundle under `plugins/` is a standalone Agent Plugins 1.0.0 package: a
+root `plugin.json` manifest (`$schema` + `name` required, closed schema) with
+skills discovered from its `skills/` directory. Point any conformant
+Agent Plugins client at a bundle root — `plugins/discuss`, `plugins/implement`,
+`plugins/dev-loop`, `plugins/fetch-external-knowledge`,
+`plugins/codex-deepseek-subagent` — and it loads the bundle's skills.
 
 ### Codex
 
@@ -73,12 +83,17 @@ Python project tooling — uv workflows, pydantic config trees, loguru logging, 
 
 Skills: `uv-python-workflow`, `pydantic-config-tree`, `loguru-first-logging`, `typed-interfaces`, `centralized-path-config`
 
-### dev_loop
-The full development loop — git workflow, worktrees, Justfile recipes, TDD plans, best practices, and verification before completion. Includes a session-end hook that warns about uncommitted changes.
+### dev-loop
+The full development loop — git workflow, worktrees, Justfile recipes, TDD plans, best practices, and verification before completion.
 
 Skills: `git-workflow-and-versioning`, `using-git-worktrees`, `finishing-a-development-branch`, `justfile-workflow`, `development-best-practices`, `tdd-checkbox-plans`, `verification-before-completion`
 
-### fetch_external_knowledge
+### fetch-external-knowledge
 Fetch knowledge from outside the repo — code intelligence via Codegraph and current library docs via Context7.
 
 Skills: `codegraph-usage`, `context7-docs-first`
+
+### codex-deepseek-subagent
+Offline installer for the DeepSeek V4 Flash custom subagent for Codex.
+
+Skills: `install-codex-deepseek-subagent`

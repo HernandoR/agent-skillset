@@ -1,6 +1,6 @@
 {
-  "name": "fetch_external_knowledge",
-  "version": "0.2.0",
+  "name": "fetch-external-knowledge",
+  "version": "0.3.0",
   "description": "Code intelligence and docs-first external knowledge retrieval",
   "keywords": ["codegraph", "context7", "docs", "code-search"],
   "skills": "./skills",

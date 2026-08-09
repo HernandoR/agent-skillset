@@ -1,6 +1,6 @@
 {
   "name": "implement",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Python tooling: uv, pydantic config, loguru logging, typed interfaces, path config",
   "keywords": ["python", "uv", "pydantic", "loguru", "typing"],
   "skills": "./skills",

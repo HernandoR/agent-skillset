@@ -13,8 +13,8 @@ Skills are grouped into **bundles** (plugins) under
 lists the bundles. Each skill is independent and must stand alone when loaded by
 itself, but related skills may cross-reference each other.
 
-Current bundles: `discuss`, `implement`, `dev_loop`, `fetch_external_knowledge`,
-`codex_deepseek_subagent`.
+Current bundles: `discuss`, `implement`, `dev-loop`, `fetch-external-knowledge`,
+`codex-deepseek-subagent`.
 
 The repository follows conventions learned from `pcl-rustic`:
 
@@ -36,7 +36,8 @@ The repository follows conventions learned from `pcl-rustic`:
 .agents/spec/                        # agent-facing project rules, mirrored in AGENTS.md
 .claude-plugin/marketplace.json      # marketplace manifest listing every bundle
 plugins/<bundle>/                    # one installable plugin per bundle
-  .claude-plugin/plugin.json         #   bundle manifest (name, version, description)
+  plugin.json                        #   Agent Plugins 1.0.0 portable manifest
+  .claude-plugin/plugin.json         #   Claude Code / Codex bundle manifest
   skills/<skill-name>/               #   the bundle's skills
 docs/plans/                          # ADRs (settled decisions)
 docs/rfc/                            # RFCs (proposals for discussion)
@@ -73,13 +74,14 @@ summarize the workflow.
 
 ## Harness Compatibility
 
-The tree is consumed by three harnesses and must stay loadable by all of them.
+The tree is consumed by four ecosystems and must stay loadable by all of them.
 
 | Harness | Reads | Notes |
 |---|---|---|
 | Claude Code | `.claude-plugin/marketplace.json` → `plugins/<bundle>/.claude-plugin/plugin.json` | Primary distribution path. |
 | Codex | `plugins/<bundle>/.claude-plugin/plugin.json` | Second entry in Codex's manifest search order, so no Codex-specific manifest is needed. |
 | Pi | root `package.json` → `pi.skills` glob | Needs the `pi-package` keyword to be gallery-discoverable. |
+| Agent Plugins clients | `plugins/<bundle>/plugin.json` + `skills/` | Agent Plugins 1.0.0: root `plugin.json` (`$schema` + `name` required), skills discovered at fixed `skills/`. Inert to Claude Code and Codex (not in their manifest search orders). |
 
 Rules that follow from this:
 
@@ -104,6 +106,18 @@ Rules that follow from this:
   do not add a second marketplace file.
 - **`pi.skills` must cover every bundle.** `just validate` fails if a bundle's
   `skills/` directory is not matched by a glob in `package.json`.
+- **Every bundle ships a root `plugin.json` in Agent Plugins 1.0.0 format.**
+  The schema is closed: only `$schema`, `name`, `version`, `description`,
+  `author`, `homepage`, `repository`, `license`, `keywords`, `extensions` are
+  allowed. `$schema` must be
+  `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json` and `name` must
+  match the Agent Plugins pattern (lowercase alnum, hyphen, period; alnum
+  start/end; no `--` or `..`).
+- **Bundle names are kebab-case and identical everywhere.** The directory
+  name, the root `plugin.json` `name`, the `.claude-plugin/plugin.json` `name`,
+  and the marketplace entry `name`/`source` must all agree; the root manifest
+  `version` must equal the `.claude-plugin` manifest `version`. `just validate`
+  enforces these syncs so the package keeps one identity across ecosystems.
 
 ## Project Rules
 

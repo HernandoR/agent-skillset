@@ -1,6 +1,6 @@
 {
-  "name": "codex_deepseek_subagent",
-  "version": "0.3.0",
+  "name": "codex-deepseek-subagent",
+  "version": "0.4.0",
   "description": "Offline installer for the DeepSeek V4 Flash custom subagent for Codex",
   "keywords": [
     "codex",
