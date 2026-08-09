@@ -12,6 +12,24 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PLUGINS_DIR = REPO_ROOT / "plugins"
 REQUIRED_OPENAI_KEYS = {"display_name", "short_description", "default_prompt"}
 REQUIRED_PLUGIN_KEYS = {"name", "version", "description"}
+
+# Agent Plugins 1.0.0 (https://agent-plugins.org) closed root plugin.json schema.
+AGENT_PLUGIN_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
+AGENT_PLUGIN_KEYS = {
+    "$schema",
+    "name",
+    "version",
+    "description",
+    "author",
+    "homepage",
+    "repository",
+    "license",
+    "keywords",
+    "extensions",
+}
+AGENT_PLUGIN_NAME_RE = re.compile(
+    r"^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"
+)
 COMPONENT_PATH_FIELDS = {
     "skills",
     "commands",
@@ -116,6 +134,92 @@ def validate_skill(skill_dir: Path) -> list[str]:
         errors.append(f"{skill_file.relative_to(REPO_ROOT)} missing description")
 
     errors.extend(validate_openai_yaml(skill_dir / "agents" / "openai.yaml"))
+    return errors
+
+
+def validate_agent_plugin_manifest(plugin_dir: Path) -> list[str]:
+    """Validate the root plugin.json as an Agent Plugins 1.0.0 manifest.
+
+    Agent Plugins requires the portable manifest at the plugin root with a
+    closed top-level schema and a restricted name. The root manifest must also
+    stay in sync with the Claude/Codex manifest (``.claude-plugin/plugin.json``)
+    so the package keeps one identity and one version across ecosystems.
+    """
+    errors: list[str] = []
+    manifest_file = plugin_dir / "plugin.json"
+    rel = manifest_file.relative_to(REPO_ROOT)
+
+    if not manifest_file.exists():
+        return [f"{rel} missing (required by Agent Plugins 1.0.0)"]
+
+    try:
+        data = json.loads(manifest_file.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{rel} invalid JSON: {exc}"]
+
+    if not isinstance(data, dict):
+        return [f"{rel} must be a JSON object"]
+
+    if data.get("$schema") != AGENT_PLUGIN_SCHEMA:
+        errors.append(f"{rel} $schema must be {AGENT_PLUGIN_SCHEMA!r}")
+
+    name = data.get("name")
+    if not isinstance(name, str) or not AGENT_PLUGIN_NAME_RE.match(name):
+        errors.append(
+            f"{rel} name {name!r} must match the Agent Plugins pattern "
+            "(lowercase alnum, hyphen, period; alnum start/end; no '--' or '..')"
+        )
+
+    unsupported = {str(key) for key in data} - AGENT_PLUGIN_KEYS
+    if unsupported:
+        errors.append(
+            f"{rel} has fields outside the Agent Plugins closed schema: "
+            f"{', '.join(sorted(unsupported))}"
+        )
+
+    version = data.get("version")
+    if not isinstance(version, str) or not SEMVER_RE.match(version):
+        errors.append(f"{rel} version {version!r} must be strict semver (X.Y.Z)")
+
+    author = data.get("author")
+    if author is not None:
+        if not isinstance(author, dict):
+            errors.append(f"{rel} 'author' must be an object")
+        else:
+            extra = set(author) - {"name", "email", "url"}
+            if extra:
+                errors.append(
+                    f"{rel} author has fields outside name/email/url: "
+                    f"{', '.join(sorted(extra))}"
+                )
+
+    keywords = data.get("keywords")
+    if keywords is not None and (
+        not isinstance(keywords, list)
+        or any(not isinstance(k, str) or not k.strip() for k in keywords)
+    ):
+        errors.append(f"{rel} 'keywords' must be an array of non-empty text")
+
+    claude_file = plugin_dir / ".claude-plugin" / "plugin.json"
+    try:
+        claude = json.loads(claude_file.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return errors  # reported by validate_plugin_dir
+
+    if not isinstance(claude, dict):
+        return errors
+
+    if claude.get("name") != name:
+        errors.append(
+            f"{rel} name {name!r} != .claude-plugin/plugin.json name "
+            f"{claude.get('name')!r}"
+        )
+    if claude.get("version") != version:
+        errors.append(
+            f"{rel} version {version!r} != .claude-plugin/plugin.json version "
+            f"{claude.get('version')!r}"
+        )
+
     return errors
 
 
@@ -318,6 +422,59 @@ def validate_marketplace(repo_root: Path) -> list[str]:
     return errors
 
 
+def validate_marketplace_plugin_names(
+    repo_root: Path, plugin_dirs: list[Path]
+) -> list[str]:
+    """Each marketplace entry name must match its plugin manifest name.
+
+    The marketplace entry is the install-time identifier for Claude Code; the
+    manifest name is the package identity everywhere else. Keeping them equal
+    prevents a split identity between the marketplace and the bundle.
+    """
+    errors: list[str] = []
+    marketplace_file = repo_root / ".claude-plugin" / "marketplace.json"
+    try:
+        data = json.loads(marketplace_file.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return []  # reported by validate_marketplace
+
+    plugins = data.get("plugins") if isinstance(data, dict) else None
+    if not isinstance(plugins, list):
+        return []
+
+    for plugin in plugins:
+        if not isinstance(plugin, dict):
+            continue
+        entry_name = plugin.get("name")
+        source = plugin.get("source")
+        if not isinstance(entry_name, str) or not isinstance(source, str):
+            continue
+
+        # Only relative sources map to a bundle directory in this repo.
+        if not source.startswith("./"):
+            continue
+        plugin_dir = (repo_root / source.removeprefix("./")).resolve()
+        if plugin_dir not in {p.resolve() for p in plugin_dirs}:
+            continue
+
+        manifest_name = None
+        manifest_file = plugin_dir / ".claude-plugin" / "plugin.json"
+        try:
+            manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if isinstance(manifest, dict):
+            manifest_name = manifest.get("name")
+
+        if manifest_name is not None and entry_name != manifest_name:
+            errors.append(
+                f"marketplace.json entry {entry_name!r} != manifest name "
+                f"{manifest_name!r} for {source!r}"
+            )
+
+    return errors
+
+
 def validate_release_versions_agree(repo_root: Path) -> list[str]:
     """The two release manifests must carry the same version."""
     marketplace_file = repo_root / ".claude-plugin" / "marketplace.json"
@@ -352,9 +509,13 @@ def main() -> int:
     errors: list[str] = []
     errors.extend(validate_marketplace(REPO_ROOT))
 
+    plugin_dirs = sorted(p for p in PLUGINS_DIR.iterdir() if p.is_dir())
+    errors.extend(validate_marketplace_plugin_names(REPO_ROOT, plugin_dirs))
+
     skill_roots: list[Path] = []
-    for plugin_dir in sorted(p for p in PLUGINS_DIR.iterdir() if p.is_dir()):
+    for plugin_dir in plugin_dirs:
         errors.extend(validate_plugin_dir(plugin_dir))
+        errors.extend(validate_agent_plugin_manifest(plugin_dir))
         skills_dir = plugin_dir / "skills"
         if skills_dir.exists():
             skill_roots.append(skills_dir)

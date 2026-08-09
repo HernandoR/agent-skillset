@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "codex-deepseek-subagent",
+  "version": "0.4.0",
+  "description": "Offline installer for the DeepSeek V4 Flash custom subagent for Codex",
+  "author": {
+    "name": "HernandoR",
+    "email": "hernando@mewtant.io"
+  },
+  "homepage": "https://github.com/HernandoR/agent-skillset",
+  "repository": "https://github.com/HernandoR/agent-skillset",
+  "keywords": ["codex", "deepseek", "subagent", "hooks", "installer", "offline"]
+}

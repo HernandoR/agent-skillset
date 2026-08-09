@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "dev-loop",
+  "version": "0.4.0",
+  "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, and best practices",
+  "author": {
+    "name": "HernandoR",
+    "email": "hernando@mewtant.io"
+  },
+  "homepage": "https://github.com/HernandoR/agent-skillset",
+  "repository": "https://github.com/HernandoR/agent-skillset",
+  "keywords": ["git", "worktree", "tdd", "just", "verification"]
+}

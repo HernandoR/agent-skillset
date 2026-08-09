@@ -1,6 +1,6 @@
 {
   "name": "discuss",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts",
   "keywords": ["adr", "rfc", "design", "conventions", "documentation"],
   "skills": "./skills",
