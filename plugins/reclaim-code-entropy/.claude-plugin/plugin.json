@@ -1,0 +1,20 @@
+{
+  "name": "reclaim-code-entropy",
+  "version": "0.1.0",
+  "description": "Evidence-first simplification: prove and remove accidental codebase complexity",
+  "keywords": ["simplification", "deletion", "refactoring", "code-entropy"],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Reclaim Code Entropy",
+    "shortDescription": "Find and safely remove accidental codebase complexity, backed by consumer evidence",
+    "longDescription": "Vendored upstream skill (Yevanchen/reclaim-code-entropy, MIT) that turns deletion into a repeatable workflow: establish the public, persisted, generated, and dynamic contract; survey duplicate representations, speculative surfaces, extra routes, and lifecycle duplication; prove each cut against its real consumer graph and history; then apply one cut end to end with proportional verification. Audit mode ranks candidates without editing; apply mode implements the safest proved cut.",
+    "developerName": "Yevanchen",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "defaultPrompt": [
+      "Audit this repository and rank the safest simplification candidates.",
+      "Prove whether this export still has a consumer.",
+      "Implement one high-confidence cut and verify it."
+    ]
+  }
+}

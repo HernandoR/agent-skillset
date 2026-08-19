@@ -5,7 +5,7 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "plugins": [
     {
       "name": "discuss",
@@ -31,6 +31,11 @@
       "name": "codex-deepseek-subagent",
       "source": "./plugins/codex-deepseek-subagent",
       "description": "Offline installer for the DeepSeek V4 Flash custom subagent for Codex"
+    },
+    {
+      "name": "reclaim-code-entropy",
+      "source": "./plugins/reclaim-code-entropy",
+      "description": "Evidence-first simplification: prove and remove accidental codebase complexity"
     }
   ]
 }

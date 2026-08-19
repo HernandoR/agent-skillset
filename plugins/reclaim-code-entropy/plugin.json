@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "reclaim-code-entropy",
+  "version": "0.1.0",
+  "description": "Evidence-first simplification: prove and remove accidental codebase complexity",
+  "author": {
+    "name": "Yevanchen"
+  },
+  "homepage": "https://github.com/Yevanchen/reclaim-code-entropy",
+  "repository": "https://github.com/Yevanchen/reclaim-code-entropy",
+  "license": "MIT",
+  "keywords": ["simplification", "deletion", "refactoring", "code-entropy"]
+}

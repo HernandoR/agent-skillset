@@ -20,6 +20,7 @@ claude plugin install implement@agent-skillset
 claude plugin install dev-loop@agent-skillset
 claude plugin install fetch-external-knowledge@agent-skillset
 claude plugin install codex-deepseek-subagent@agent-skillset
+claude plugin install reclaim-code-entropy@agent-skillset
 ```
 
 ### Agent Plugins
@@ -29,7 +30,8 @@ root `plugin.json` manifest (`$schema` + `name` required, closed schema) with
 skills discovered from its `skills/` directory. Point any conformant
 Agent Plugins client at a bundle root — `plugins/discuss`, `plugins/implement`,
 `plugins/dev-loop`, `plugins/fetch-external-knowledge`,
-`plugins/codex-deepseek-subagent` — and it loads the bundle's skills.
+`plugins/codex-deepseek-subagent`, `plugins/reclaim-code-entropy` — and it
+loads the bundle's skills.
 
 ### Codex
 
@@ -97,3 +99,10 @@ Skills: `codegraph-usage`, `context7-docs-first`
 Offline installer for the DeepSeek V4 Flash custom subagent for Codex.
 
 Skills: `install-codex-deepseek-subagent`
+
+### reclaim-code-entropy
+Evidence-first simplification — establish the public, persisted, generated, and dynamic contract, survey entropy, prove each cut against its real consumer graph, then apply one cut with proportional verification. Audit mode ranks candidates without editing.
+
+Skills: `reclaim-code-entropy`
+
+Vendored verbatim from [Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy) at commit `491cbff12cdc6988dfb18dec15b2c3bc4db512f1`, MIT — see `plugins/reclaim-code-entropy/LICENSE`.

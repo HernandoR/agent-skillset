@@ -14,7 +14,13 @@ lists the bundles. Each skill is independent and must stand alone when loaded by
 itself, but related skills may cross-reference each other.
 
 Current bundles: `discuss`, `implement`, `dev-loop`, `fetch-external-knowledge`,
-`codex-deepseek-subagent`.
+`codex-deepseek-subagent`, `reclaim-code-entropy`.
+
+`reclaim-code-entropy` is vendored verbatim from
+[Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy)
+(MIT, commit `491cbff12cdc6988dfb18dec15b2c3bc4db512f1`); its `LICENSE` sits at the
+bundle root. Edit it only to re-sync with upstream, and record the new commit in
+`README.md` and here when you do.
 
 The repository follows conventions learned from `pcl-rustic`:
 
