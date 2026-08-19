@@ -5,12 +5,12 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "plugins": [
     {
       "name": "discuss",
       "source": "./plugins/discuss",
-      "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts"
+      "description": "ADR-driven development, agent spec conventions, decision grilling, English-only artifacts, and diff explanations"
     },
     {
       "name": "implement",
@@ -36,11 +36,6 @@
       "name": "reclaim-code-entropy",
       "source": "./plugins/reclaim-code-entropy",
       "description": "Evidence-first simplification: prove and remove accidental codebase complexity"
-    },
-    {
-      "name": "explain-diff",
-      "source": "./plugins/explain-diff",
-      "description": "Explain a diff, branch, or PR as an HTML page or MyST Markdown document"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "discuss",
-  "version": "0.4.0",
-  "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts",
+  "version": "0.5.0",
+  "description": "ADR-driven development, agent spec conventions, decision grilling, English-only artifacts, and diff explanations",
   "author": {
     "name": "HernandoR",
     "email": "hernando@mewtant.io"
   },
   "homepage": "https://github.com/HernandoR/agent-skillset",
   "repository": "https://github.com/HernandoR/agent-skillset",
-  "keywords": ["adr", "rfc", "design", "conventions", "documentation"]
+  "keywords": ["adr", "rfc", "design", "conventions", "documentation", "diff"]
 }

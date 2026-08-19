@@ -1,20 +1,20 @@
 {
   "name": "discuss",
-  "version": "0.4.0",
-  "description": "ADR-driven development, agent spec conventions, decision grilling, and English-only written artifacts",
-  "keywords": ["adr", "rfc", "design", "conventions", "documentation"],
+  "version": "0.5.0",
+  "description": "ADR-driven development, agent spec conventions, decision grilling, English-only artifacts, and diff explanations",
+  "keywords": ["adr", "rfc", "design", "conventions", "documentation", "diff"],
   "skills": "./skills",
   "interface": {
     "displayName": "Discuss",
-    "shortDescription": "Design-time reasoning: RFCs, ADRs, project rules, and decision grilling",
-    "longDescription": "Skills for the design phase. Grill a plan until the branching decisions are settled, log the discussion as an append-only RFC, record the outcome as an atomically-edited ADR, publish project rules where any harness will find them, and keep every written artifact in English regardless of the conversation language.",
+    "shortDescription": "Design-time reasoning: RFCs, ADRs, project rules, decision grilling, and diff explanations",
+    "longDescription": "Skills for the design phase and for explaining the result. Grill a plan until the branching decisions are settled, log the discussion as an append-only RFC, record the outcome as an atomically-edited ADR, publish project rules where any harness will find them, keep every written artifact in English regardless of the conversation language, and turn a finished diff, branch, or PR into a teaching artifact — a self-contained HTML page or a MyST Markdown document with diagrams and a comprehension quiz.",
     "developerName": "HernandoR",
     "category": "Productivity",
     "capabilities": ["Interactive", "Write"],
     "defaultPrompt": [
       "Grill this plan before I implement it.",
       "Record this decision as an ADR.",
-      "Put this project rule where every agent finds it."
+      "Explain this PR for someone new to the codebase."
     ]
   }
 }
