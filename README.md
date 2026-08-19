@@ -21,6 +21,7 @@ claude plugin install dev-loop@agent-skillset
 claude plugin install fetch-external-knowledge@agent-skillset
 claude plugin install codex-deepseek-subagent@agent-skillset
 claude plugin install reclaim-code-entropy@agent-skillset
+claude plugin install explain-diff@agent-skillset
 ```
 
 ### Agent Plugins
@@ -30,8 +31,8 @@ root `plugin.json` manifest (`$schema` + `name` required, closed schema) with
 skills discovered from its `skills/` directory. Point any conformant
 Agent Plugins client at a bundle root — `plugins/discuss`, `plugins/implement`,
 `plugins/dev-loop`, `plugins/fetch-external-knowledge`,
-`plugins/codex-deepseek-subagent`, `plugins/reclaim-code-entropy` — and it
-loads the bundle's skills.
+`plugins/codex-deepseek-subagent`, `plugins/reclaim-code-entropy`,
+`plugins/explain-diff` — and it loads the bundle's skills.
 
 ### Codex
 
@@ -106,3 +107,10 @@ Evidence-first simplification — establish the public, persisted, generated, an
 Skills: `reclaim-code-entropy`
 
 Vendored verbatim from [Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy) at commit `491cbff12cdc6988dfb18dec15b2c3bc4db512f1`, MIT — see `plugins/reclaim-code-entropy/LICENSE`.
+
+### explain-diff
+Turn a diff, commit range, branch, or PR into a teaching artifact — two-tier background, the core intuition worked through toy data, a grouped code walkthrough, and a five-question quiz with per-option feedback. Pick the skill by output format.
+
+Skills: `explain-diff-html` (single self-contained HTML file), `explain-diff-myst` (MyST Markdown with mermaid diagrams, admonitions, and dropdown answers)
+
+Adapted from Geoffrey Litt's [explain-diff gist](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524); the Notion variant was retargeted to MyST Markdown.

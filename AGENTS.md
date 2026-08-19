@@ -14,13 +14,19 @@ lists the bundles. Each skill is independent and must stand alone when loaded by
 itself, but related skills may cross-reference each other.
 
 Current bundles: `discuss`, `implement`, `dev-loop`, `fetch-external-knowledge`,
-`codex-deepseek-subagent`, `reclaim-code-entropy`.
+`codex-deepseek-subagent`, `reclaim-code-entropy`, `explain-diff`.
 
 `reclaim-code-entropy` is vendored verbatim from
 [Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy)
 (MIT, commit `491cbff12cdc6988dfb18dec15b2c3bc4db512f1`); its `LICENSE` sits at the
 bundle root. Edit it only to re-sync with upstream, and record the new commit in
 `README.md` and here when you do.
+
+`explain-diff` is adapted — not vendored — from Geoffrey Litt's
+[explain-diff gist](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524),
+which carries no license: the workflow was rewritten to this repo's skill shape
+and the gist's Notion output variant was retargeted to MyST Markdown. It is
+ordinary repo-owned content; edit it freely.
 
 The repository follows conventions learned from `pcl-rustic`:
 

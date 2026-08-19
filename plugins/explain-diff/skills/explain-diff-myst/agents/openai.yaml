@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explain Diff (MyST)"
+  short_description: "Explain a code change as a MyST Markdown page with mermaid diagrams and a quiz"
+  default_prompt: "Use $explain-diff-myst to explain this change: deep background, the core intuition with toy data, a grouped code walkthrough, and a five-question dropdown quiz."
