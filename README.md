@@ -4,12 +4,36 @@ Reusable agent skills for engineering workflows, distributed as a plugin marketp
 
 ## Installation
 
+### skills CLI (`npx skills`)
+
+Every skill in the repo is discoverable by the [skills CLI](https://github.com/vercel-labs/skills)
+— discovery walks `plugins/*/skills/*/SKILL.md` automatically, no root `SKILL.md`
+or extra manifest required. Install into every detected agent interactively:
+
+```
+npx skills add hernandor/agent-skillset
+```
+
+Or pick agents and skills explicitly (global/user scope, no prompts):
+
+```
+npx skills add hernandor/agent-skillset --global --agent codex --skill '*' -y
+```
+
+In the default symlink mode the CLI writes a canonical copy into
+`~/.agents/skills/<name>` and symlinks it into each named agent's own skills
+directory. If one of your agents already loads these skills as plugins (e.g.
+Claude Code via this marketplace, or Pi via `pi-claude-marketplace`) **and**
+reads `~/.agents/skills` natively, that canonical copy would duplicate every
+plugin-provided skill — add `--copy`, which bypasses the canonical directory
+and writes only into the named agent's own skills dir.
+
 ### Claude Code
 
 Add the marketplace once:
 
 ```
-hernandor/agent-skillset
+claude plugin marketplace add hernandor/agent-skillset
 ```
 
 Then install the bundles you need:
@@ -35,7 +59,19 @@ loads the bundle's skills.
 
 ### Codex
 
-Codex discovers plugin manifests at `.codex-plugin/plugin.json`, then `.claude-plugin/plugin.json`, then `.cursor-plugin/plugin.json` — so each bundle under `plugins/` loads as-is, no Codex-specific manifest required. Point Codex at a bundle root (`plugins/discuss`, `plugins/implement`, …) and its `skills/` directory is scanned recursively for `SKILL.md`.
+Codex has the same marketplace mechanism, taking the same source shapes. Add the marketplace once, then add the bundles you need:
+
+```
+codex plugin marketplace add hernandor/agent-skillset
+codex plugin add discuss@agent-skillset
+codex plugin add implement@agent-skillset
+codex plugin add dev-loop@agent-skillset
+codex plugin add fetch-external-knowledge@agent-skillset
+codex plugin add codex-deepseek-subagent@agent-skillset
+codex plugin add reclaim-code-entropy@agent-skillset
+```
+
+Without the marketplace, Codex also loads any bundle directly: it discovers plugin manifests at `.codex-plugin/plugin.json`, then `.claude-plugin/plugin.json`, then `.cursor-plugin/plugin.json` — so each bundle under `plugins/` loads as-is, no Codex-specific manifest required. Point Codex at a bundle root (`plugins/discuss`, `plugins/implement`, …) and its `skills/` directory is scanned recursively for `SKILL.md`.
 
 To enable or disable individual skills, use `config.toml`:
 
