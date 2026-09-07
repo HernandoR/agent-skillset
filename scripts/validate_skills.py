@@ -137,6 +137,30 @@ def validate_skill(skill_dir: Path) -> list[str]:
     return errors
 
 
+def validate_agent_file(agent_file: Path) -> list[str]:
+    """Validate a Claude Code subagent definition (`agents/<name>.md`).
+
+    Claude Code auto-discovers the directory; the file needs frontmatter with a
+    `name` equal to the file stem and a non-empty `description`.
+    """
+    rel = agent_file.relative_to(REPO_ROOT)
+    try:
+        metadata = load_frontmatter(agent_file)
+    except ValueError as exc:
+        return [f"{rel}: {exc}"]
+
+    errors: list[str] = []
+    name = metadata.get("name")
+    if name != agent_file.stem:
+        errors.append(
+            f"{rel} name {name!r} does not match file stem {agent_file.stem!r}"
+        )
+    description = metadata.get("description")
+    if not isinstance(description, str) or not description.strip():
+        errors.append(f"{rel} missing description")
+    return errors
+
+
 def validate_agent_plugin_manifest(plugin_dir: Path) -> list[str]:
     """Validate the root plugin.json as an Agent Plugins 1.0.0 manifest.
 
@@ -521,6 +545,10 @@ def main() -> int:
             skill_roots.append(skills_dir)
             for skill_dir in sorted(p for p in skills_dir.iterdir() if p.is_dir()):
                 errors.extend(validate_skill(skill_dir))
+        agents_dir = plugin_dir / "agents"
+        if agents_dir.exists():
+            for agent_file in sorted(agents_dir.glob("*.md")):
+                errors.extend(validate_agent_file(agent_file))
 
     errors.extend(validate_pi_package(REPO_ROOT, skill_roots))
     errors.extend(validate_release_versions_agree(REPO_ROOT))

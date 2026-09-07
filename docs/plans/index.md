@@ -32,6 +32,7 @@ adr-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 | [ADR-0009](adr-0009-multi-harness-plugin-compatibility-2026-08-05.md) | Multi-Harness Plugin Compatibility (Codex and Pi) | Accepted |
 | [ADR-0010](adr-0010-remove-commit-reminder-hook-2026-08-07.md) | Remove the Commit-Reminder Hook | Accepted |
 | [ADR-0011](adr-0011-agent-plugins-compatibility-2026-08-09.md) | Agent Plugins Compatibility | Accepted |
+| [ADR-0012](adr-0012-model-tiered-subagents-bundle-2026-09-07.md) | Model-Tiered Subagents Bundle | Accepted |
 
 ## Process
 

@@ -45,6 +45,7 @@ claude plugin install dev-loop@agent-skillset
 claude plugin install fetch-external-knowledge@agent-skillset
 claude plugin install codex-deepseek-subagent@agent-skillset
 claude plugin install reclaim-code-entropy@agent-skillset
+claude plugin install subagents@agent-skillset
 ```
 
 ### Agent Plugins
@@ -55,7 +56,8 @@ skills discovered from its `skills/` directory. Point any conformant
 Agent Plugins client at a bundle root — `plugins/discuss`, `plugins/implement`,
 `plugins/dev-loop`, `plugins/fetch-external-knowledge`,
 `plugins/codex-deepseek-subagent`, `plugins/reclaim-code-entropy` — and it
-loads the bundle's skills.
+loads the bundle's skills. `plugins/subagents` ships Claude Code subagent
+definitions only (no skills), so it loads as an empty plugin there.
 
 ### Codex
 
@@ -70,6 +72,9 @@ codex plugin add fetch-external-knowledge@agent-skillset
 codex plugin add codex-deepseek-subagent@agent-skillset
 codex plugin add reclaim-code-entropy@agent-skillset
 ```
+
+`subagents` is Claude Code-only (agent definitions, no skills); adding it to
+Codex is harmless but installs nothing.
 
 Without the marketplace, Codex also loads any bundle directly: it discovers plugin manifests at `.codex-plugin/plugin.json`, then `.claude-plugin/plugin.json`, then `.cursor-plugin/plugin.json` — so each bundle under `plugins/` loads as-is, no Codex-specific manifest required. Point Codex at a bundle root (`plugins/discuss`, `plugins/implement`, …) and its `skills/` directory is scanned recursively for `SKILL.md`.
 
@@ -144,3 +149,8 @@ Evidence-first simplification — establish the public, persisted, generated, an
 Skills: `reclaim-code-entropy`
 
 Vendored verbatim from [Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy) at commit `491cbff12cdc6988dfb18dec15b2c3bc4db512f1`, MIT — see `plugins/reclaim-code-entropy/LICENSE`.
+
+### subagents
+Model-tiered Claude Code subagents for delegating work by cost and the judgment it needs. Loaded from the bundle's `agents/` directory; this bundle ships no skills and is inert on Codex, Pi, and Agent Plugins clients.
+
+Agents: `haiku-task` (low-cost mechanical execution from an explicit checklist), `opus-dev` (bounded implementation, substantive review, tradeoff analysis, bug diagnosis), `fable-review` (read-only highest-quality reviewer for bug hunting, plan review, and verifying cheaper agents' output)

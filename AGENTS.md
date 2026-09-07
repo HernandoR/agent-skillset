@@ -14,7 +14,11 @@ lists the bundles. Each skill is independent and must stand alone when loaded by
 itself, but related skills may cross-reference each other.
 
 Current bundles: `discuss`, `implement`, `dev-loop`, `fetch-external-knowledge`,
-`codex-deepseek-subagent`, `reclaim-code-entropy`.
+`codex-deepseek-subagent`, `reclaim-code-entropy`, `subagents`.
+
+`subagents` is the one bundle that carries no skills: it ships Claude Code
+subagent definitions in `plugins/subagents/agents/*.md` (ADR-0012). Claude Code
+auto-discovers that directory; the other harnesses load the bundle as empty.
 
 `reclaim-code-entropy` is vendored verbatim from
 [Yevanchen/reclaim-code-entropy](https://github.com/Yevanchen/reclaim-code-entropy)
@@ -52,6 +56,7 @@ plugins/<bundle>/                    # one installable plugin per bundle
   plugin.json                        #   Agent Plugins 1.0.0 portable manifest
   .claude-plugin/plugin.json         #   Claude Code / Codex bundle manifest
   skills/<skill-name>/               #   the bundle's skills
+  agents/<agent-name>.md             #   optional Claude Code subagents (auto-discovered)
 docs/plans/                          # ADRs (settled decisions)
 docs/rfc/                            # RFCs (proposals for discussion)
 scripts/                             # validation and maintenance scripts
@@ -84,6 +89,16 @@ summarize the workflow.
 
 `agents/openai.yaml` must define `interface` with `display_name`,
 `short_description`, and `default_prompt`. `just validate` enforces both files.
+
+## Subagent Layout
+
+A bundle may ship Claude Code subagents as `plugins/<bundle>/agents/<name>.md`
+with `name` and `description` frontmatter (plus optional `model`, `tools`, and
+the other fields Claude Code accepts). The file stem must equal `name`. Do not
+declare an `agents` path in `.claude-plugin/plugin.json`: Codex does not
+recognise the field and `just validate` rejects it; Claude Code finds the
+default directory on its own. Agents are Claude Code-only payload and are inert
+in Codex, Pi, and Agent Plugins clients.
 
 ## Harness Compatibility
 
@@ -183,8 +198,8 @@ Python commands in this repo should run through `uv`, for example
 Two manifests carry versions, and both are semver:
 
 - `plugins/<bundle>/.claude-plugin/plugin.json` — bump when that bundle's
-  payload changes. Minor for a new or removed skill or a behavioural change to
-  an existing one; patch for wording, typo, and reference-file fixes.
+  payload changes. Minor for a new or removed skill or agent or a behavioural
+  change to an existing one; patch for wording, typo, and reference-file fixes.
 - `.claude-plugin/marketplace.json` — bump on every published change, taking
   the highest bump among the bundles touched. Patch for repo-level changes that
   ship no bundle payload (this file, `README.md`, `scripts/`, `Justfile`).

@@ -1,0 +1,19 @@
+{
+  "name": "subagents",
+  "version": "0.1.0",
+  "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review",
+  "keywords": ["subagent", "delegation", "haiku", "opus", "fable", "review", "claude-code"],
+  "interface": {
+    "displayName": "Subagents",
+    "shortDescription": "Three model-tiered Claude Code subagents to delegate work by cost and judgment required",
+    "longDescription": "Claude Code subagent definitions loaded from the bundle's agents/ directory: haiku-task runs simple, explicitly scoped mechanical work at low cost; opus-dev implements bounded changes, reviews, and diagnoses bugs where judgment matters; fable-review is a read-only, highest-quality reviewer for bug hunting, plan review, and verifying cheaper agents' output. Each agent returns conclusions and validation results rather than a step-by-step log. The bundle ships no skills; other harnesses load it as an empty plugin.",
+    "developerName": "HernandoR",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Use haiku-task to apply this rename across the listed files.",
+      "Delegate this bounded change to opus-dev and report the test results.",
+      "Have fable-review hunt for bugs in this diff."
+    ]
+  }
+}
