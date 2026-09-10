@@ -1,7 +1,7 @@
 ---
 name: english-only-artifacts
-version: 1
-last_updated: 2026-08-05
+version: 2
+last_updated: 2026-09-10
 ---
 
 # English-Only Written Artifacts
@@ -23,6 +23,14 @@ transcript — an appendix in the same file, or a `.<lang>.md` sibling that link
 back. Indexes and cross-references always point at the English file. Only an
 explicit, artifact-specific instruction can make another language authoritative
 for a given file.
+
+The register is Simplified Technical English (ASD-STE100): active voice, one
+instruction per sentence, short sentences, no phrasal verbs, no nominalization,
+and one name per thing. Apply it in full to text a machine or an agent parses
+without a human — error and log strings, CLI help, tool descriptions,
+inter-agent instructions. Apply its structural rules, with word choice left
+advisory, to prose a human reads. Never drop a hedge, a scope qualifier, or a
+safety condition to shorten a sentence.
 
 ## Why
 
@@ -90,8 +98,22 @@ feat(cache): 添加分层缓存策略
 feat(cache): add tiered cache strategy
 ```
 
+```text
+# BAD: English, but dense enough that the next reader has to decode it
+It should be noted that the cache may potentially need to be invalidated
+in the event that a write operation has completed but the replication lag
+has not yet been observed to converge.
+
+# GOOD: same claim, same hedge, one idea per sentence
+A write can complete before replication converges. If that happens, the
+cache may hold stale data. Invalidate the cache when replication lag
+returns to zero.
+```
+
 ## References
 
+- The `asd-ste100` skill — the controlled-language rules this file
+  requires, and the two modes it applies them in.
 - The `english-only-artifacts` skill — full rationale, transcript shapes, and
   the artifact/interaction boundary.
 - The `agent-spec-convention` skill — schema this file conforms to, plus

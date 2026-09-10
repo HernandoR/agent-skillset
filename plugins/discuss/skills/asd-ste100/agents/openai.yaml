@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simplified Technical English"
+  short_description: "Rewrites English so an agent cannot misread it"
+  default_prompt: "Use $asd-ste100 to rewrite this text so a downstream agent cannot misread it."

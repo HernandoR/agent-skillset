@@ -117,11 +117,13 @@ If you vendor the repo instead of installing it, point at the skill roots direct
 ## Bundles
 
 ### discuss
-Design-time reasoning and explaining the result — ADRs, RFCs, agent spec conventions, decision grilling, the English-only artifact rule, and rich explanations of a finished diff, branch, or PR.
+Design-time reasoning and explaining the result — ADRs, RFCs, agent spec conventions, decision grilling, the English-only artifact rule, controlled-language rewrites, and rich explanations of a finished diff, branch, or PR.
 
-Skills: `adr-driven-development`, `agent-spec-convention`, `decision-grilling`, `english-only-artifacts`, `explain-diff-html` (single self-contained HTML file), `explain-diff-myst` (MyST Markdown with mermaid diagrams, admonitions, and dropdown answers)
+Skills: `adr-driven-development`, `agent-spec-convention`, `asd-ste100` (Simplified Technical English rewrites for text another agent must parse), `decision-grilling`, `english-only-artifacts`, `explain-diff-html` (single self-contained HTML file), `explain-diff-myst` (MyST Markdown with mermaid diagrams, admonitions, and dropdown answers)
 
 The two `explain-diff-*` skills are adapted from Geoffrey Litt's [explain-diff gist](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524); the gist's Notion variant was retargeted to MyST Markdown.
+
+`asd-ste100` is vendored verbatim from [danyuchn/asd-ste100-skill](https://github.com/danyuchn/asd-ste100-skill) at commit `d5ce157870cf9c41efd1d6e836706a2be3c7b9da`, MIT — see `plugins/discuss/skills/asd-ste100/LICENSE`.
 
 ### implement
 Python project tooling — uv workflows, pydantic config trees, loguru logging, typed interfaces, and centralized path config.

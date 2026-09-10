@@ -22,6 +22,29 @@ A request to talk in Chinese is a request about the *first* row only. It never
 changes the second. "用中文讨论" means reply in Chinese and keep writing the ADR
 in English.
 
+## Which English
+
+English is the language. **Simplified Technical English (ASD-STE100) is the
+register.** An artifact satisfies this rule when it is in English *and* in a
+form its next reader — a future contributor, a fresh agent session, a
+translation pipeline — cannot misparse. Load the `asd-ste100` skill and apply
+it to the artifact before you commit it.
+
+| Artifact | STE mode |
+|---|---|
+| Text a machine or agent parses without a human: error and log strings, CLI `--help`, tool and function descriptions, inter-agent instructions, agent spec rules | **Strict** |
+| Text a human reads: docs, RFCs, ADRs, plans, READMEs, code comments, docstrings, PR and issue bodies, commit bodies | **STE-flavored** — structural rules in full, lexical rules advisory |
+
+STE-flavored is the floor for prose, not an excuse to skip the pass: active
+voice, one instruction per sentence, sentences at or under 25 words, no
+semicolons, no phrasal verbs, no nominalization, no marketing adjectives.
+
+Two limits carry over from `asd-ste100` unchanged. Never drop a hedge, a scope
+qualifier, or a safety condition to shorten a sentence — that changes the
+claim, and the artifact is the record of the claim. Never apply STE to
+localized product copy or to a verbatim quote. Both are already outside this
+rule's scope.
+
 ## When A Non-English Document Is Asked For
 
 English stays the source of truth. The other language is **attached to** the
@@ -106,11 +129,15 @@ into the project's `.agents/spec/` and mirror it in `AGENTS.md`. See the
 - Linking the transcript from `index.md` instead of the English original.
 - English prose with Chinese code comments, log strings, or commit subjects —
   the rule covers the whole artifact, not just its paragraphs.
+- Treating the rule as satisfied by English alone, and committing dense,
+  hedge-stacked prose that the next reader has to decode.
 - Translating a quoted non-English error message or fixture and presenting it
   as the original.
 
 ## Related Skills
 
+- `asd-ste100` — the register every English artifact is written in; run it
+  before committing the artifact.
 - `agent-spec-convention` — schema and linter for making this a project rule.
 - `decision-grilling` — the discussion may be in any language; its written
   output is not.

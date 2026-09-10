@@ -26,6 +26,13 @@ auto-discovers that directory; the other harnesses load the bundle as empty.
 bundle root. Edit it only to re-sync with upstream, and record the new commit in
 `README.md` and here when you do.
 
+`discuss/skills/asd-ste100` is vendored verbatim from
+[danyuchn/asd-ste100-skill](https://github.com/danyuchn/asd-ste100-skill)
+(MIT, commit `d5ce157870cf9c41efd1d6e836706a2be3c7b9da`); its `LICENSE` sits in the
+skill directory, and it keeps the upstream `examples/` directory alongside the
+standard skill layout. Edit it only to re-sync with upstream, and record the new
+commit in `README.md` and here when you do.
+
 `discuss/skills/explain-diff-html` and `discuss/skills/explain-diff-myst` are
 adapted — not vendored — from Geoffrey Litt's
 [explain-diff gist](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524),
@@ -157,9 +164,11 @@ Rules live in `.agents/spec/<rule>.md` with a summary mirrored below. Run
 Every durable written artifact — documentation, code comments, docstrings,
 commit messages, PR text, log and error strings — is written in English,
 regardless of the language the conversation is being held in. Interaction
-language follows the user; artifact language does not. A localized rendering is
-attached to the English original as a labelled reading transcript, and indexes
-always link the English file.
+language follows the user, and artifact language does not. A localized
+rendering is attached to the English original as a labelled reading transcript,
+and indexes always link the English file. The register is Simplified Technical
+English: apply `plugins/discuss/skills/asd-ste100` in full to text a machine or
+an agent parses, and its structural rules to prose a human reads.
 
 Full spec: [.agents/spec/english-only-artifacts.md](.agents/spec/english-only-artifacts.md)
 

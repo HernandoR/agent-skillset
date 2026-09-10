@@ -1,13 +1,13 @@
 {
   "name": "discuss",
-  "version": "0.5.0",
-  "description": "ADR-driven development, agent spec conventions, decision grilling, English-only artifacts, and diff explanations",
-  "keywords": ["adr", "rfc", "design", "conventions", "documentation", "diff"],
+  "version": "0.6.0",
+  "description": "ADR-driven development, agent spec conventions, decision grilling, English-only artifacts, controlled-language rewrites, and diff explanations",
+  "keywords": ["adr", "rfc", "design", "conventions", "documentation", "diff", "ste"],
   "skills": "./skills",
   "interface": {
     "displayName": "Discuss",
-    "shortDescription": "Design-time reasoning: RFCs, ADRs, project rules, decision grilling, and diff explanations",
-    "longDescription": "Skills for the design phase and for explaining the result. Grill a plan until the branching decisions are settled, log the discussion as an append-only RFC, record the outcome as an atomically-edited ADR, publish project rules where any harness will find them, keep every written artifact in English regardless of the conversation language, and turn a finished diff, branch, or PR into a teaching artifact — a self-contained HTML page or a MyST Markdown document with diagrams and a comprehension quiz.",
+    "shortDescription": "Design-time reasoning: RFCs, ADRs, project rules, decision grilling, plain-language rewrites, and diff explanations",
+    "longDescription": "Skills for the design phase and for explaining the result. Grill a plan until the branching decisions are settled, log the discussion as an append-only RFC, record the outcome as an atomically-edited ADR, publish project rules where any harness will find them, keep every written artifact in English regardless of the conversation language, rewrite text an agent must parse into single-meaning Simplified Technical English, and turn a finished diff, branch, or PR into a teaching artifact — a self-contained HTML page or a MyST Markdown document with diagrams and a comprehension quiz.",
     "developerName": "HernandoR",
     "category": "Productivity",
     "capabilities": ["Interactive", "Write"],
