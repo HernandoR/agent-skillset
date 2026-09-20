@@ -131,9 +131,9 @@ Python project tooling — uv workflows, pydantic config trees, loguru logging, 
 Skills: `uv-python-workflow`, `pydantic-config-tree`, `loguru-first-logging`, `typed-interfaces`, `centralized-path-config`
 
 ### dev-loop
-The full development loop — git workflow, worktrees, Justfile recipes, TDD plans, best practices, and verification before completion.
+The full development loop — git workflow, worktrees, Justfile recipes, TDD plans, test shrinking, best practices, and verification before completion.
 
-Skills: `git-workflow-and-versioning`, `using-git-worktrees`, `finishing-a-development-branch`, `justfile-workflow`, `development-best-practices`, `tdd-checkbox-plans`, `verification-before-completion`
+Skills: `git-workflow-and-versioning`, `using-git-worktrees`, `finishing-a-development-branch`, `justfile-workflow`, `development-best-practices`, `tdd-checkbox-plans`, `shrink-tests`, `verification-before-completion`
 
 ### fetch-external-knowledge
 Fetch knowledge from outside the repo — code intelligence via Codegraph and current library docs via Context7.

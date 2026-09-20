@@ -168,7 +168,11 @@ language follows the user, and artifact language does not. A localized
 rendering is attached to the English original as a labelled reading transcript,
 and indexes always link the English file. The register is Simplified Technical
 English: apply `plugins/discuss/skills/asd-ste100` in full to text a machine or
-an agent parses, and its structural rules to prose a human reads.
+an agent parses, and its structural rules to prose a human reads. A `SKILL.md`
+body is text an agent parses, so it takes the strict mode, and so does its
+metadata — the frontmatter `description`, `agents/openai.yaml`, and a subagent
+definition — which a harness reads to decide whether to load the skill at
+all.
 
 Full spec: [.agents/spec/english-only-artifacts.md](.agents/spec/english-only-artifacts.md)
 

@@ -35,6 +35,8 @@ problem.
 - `decision-grilling`: use when open questions can change the implementation.
 - `using-git-worktrees`: use before isolated feature work or parallel branches.
 - `git-workflow-and-versioning`: use for code changes, commits, and branches.
+- `tdd-checkbox-plans`: use to implement an accepted ADR as red-test-then-implement steps.
+- `shrink-tests`: use when a green branch added tests that now only restate the code.
 - `verification-before-completion`: use before claiming completion or committing.
 - `finishing-a-development-branch`: use after verified implementation work.
 

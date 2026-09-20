@@ -15,6 +15,9 @@ chosen path, and clean up only when appropriate.
 Run the project verification command before offering finish options. Prefer
 `just ci` when available. If verification fails, stop and report the failure.
 
+When the branch added tests, run `shrink-tests` before offering finish options.
+A mirror is cheapest to remove while you still know the intent of each test.
+
 ## Determine The Base
 
 Find the likely base branch:
