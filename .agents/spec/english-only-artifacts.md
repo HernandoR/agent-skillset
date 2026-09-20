@@ -1,7 +1,7 @@
 ---
 name: english-only-artifacts
-version: 2
-last_updated: 2026-09-10
+version: 3
+last_updated: 2026-09-20
 ---
 
 # English-Only Written Artifacts
@@ -28,7 +28,7 @@ The register is Simplified Technical English (ASD-STE100): active voice, one
 instruction per sentence, short sentences, no phrasal verbs, no nominalization,
 and one name per thing. Apply it in full to text a machine or an agent parses
 without a human — error and log strings, CLI help, tool descriptions,
-inter-agent instructions. Apply its structural rules, with word choice left
+inter-agent instructions, and skill bodies with their metadata. Apply its structural rules, with word choice left
 advisory, to prose a human reads. Never drop a hedge, a scope qualifier, or a
 safety condition to shorten a sentence.
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Shrink Tests"
-  short_description: "Drop TDD scaffolding tests that mirror one line of code"
+  short_description: "Delete or merge tests that only mirror one line of code"
   default_prompt: "Use $shrink-tests to classify the tests this branch added and propose which to delete or merge."

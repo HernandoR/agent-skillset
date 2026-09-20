@@ -95,9 +95,6 @@ side while the code states it from the other side.
   Without them an agent reaches the skill only when the user says a trigger
   phrase. The router gains `tdd-checkbox-plans` at the same time, which it had
   omitted.
-- ADR-0013 routes each artifact class to a Strict or STE-flavored register, and
-  it classifies no `SKILL.md` body. A skill body is neither an error string nor
-  prose a human reads for its own sake. This skill is written to the
-  STE-flavored structural floor, and it uses no metaphor without a plain
-  reading. Whether skill bodies belong under Strict instead is left open for a
-  later amendment to `english-only-artifacts`.
+- ADR-0013 classified no `SKILL.md` body, so this skill raised the question of
+  which register binds one. ADR-0015 settles it: a skill body is Strict. This
+  skill is written to Strict as the first application of that rule.
