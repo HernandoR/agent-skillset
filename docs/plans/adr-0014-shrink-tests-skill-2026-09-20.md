@@ -70,7 +70,7 @@ side while the code states it from the other side.
   applied and measured before deletions for a second reason, which is
   attribution: the per-line gate reports the lost line in either order, but only
   a measurement taken between the two passes says which pass removed the cover,
-  and so which row to restore.
+  and so whether to restore a deleted row or to extend the merged table.
 - **The shrink is always its own commit**, never shared with a behaviour change
   and never run on red or on a dirty tree, so a later revert restores the tests
   without dragging code back.
