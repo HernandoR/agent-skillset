@@ -28,6 +28,12 @@ git diff --name-only <base>...HEAD -- '*test*' '*spec*'
 git diff <base>...HEAD -- <those files>
 ```
 
+The glob is a starting point, not the definition. The scope is the tests this
+branch changed, wherever they live — a Rust `#[cfg(test)] mod tests` block
+inside the production file, a Python doctest, a `FooTest.java` that the
+lowercase pattern misses. When the pathspec returns nothing, read the whole
+branch diff before concluding the branch added no tests.
+
 That set is the scaffolding the ladder just produced, and it is the set whose
 intent you still remember. Whole-suite auditing is a different, slower job — see
 "Whole-Suite Mode", and only on request.
@@ -55,9 +61,9 @@ the interface contract. Try to re-derive the test from those.
 
 - **Re-derivable → Keep.** The test is an independent statement of the
   expectation. A boundary test on a pure function couples to one place and is
-  still a keep. It describes the expected range from the requirement's side
-  while the code describes it from the other side, and two descriptions of one
-  range is the point.
+  still a keep. The test states the expected range from the requirement's
+  side. The code states the same range from the other side. Two independent
+  descriptions of one range are the reason to keep it.
 - **Not re-derivable → Delete or Merge.** The test was transcribed from the
   code. It carries nothing the code does not already carry, so it cannot fail
   for a reason worth knowing.
@@ -113,39 +119,46 @@ real case.
 
 ## Procedure
 
-1. **Start green and clean.** Run the suite. Record the pass count and the
-   coverage numbers. Never shrink on red and never on a dirty tree.
+1. **Start green and clean.** Run the suite. Record the pass count and a
+   **per-line coverage artifact** — `coverage xml`, `lcov.info`, or the
+   equivalent — not a summary percentage. Never shrink on red and never on a
+   dirty tree.
 2. **Inventory.** One row per added or changed test: `file:line`, test name, and
    the places it pins.
 3. **Screen.** Apply Layer 1 to every row.
 4. **Judge.** Apply Layer 2 to the one-place rows only.
 5. **Propose and stop.** Present the table with a verdict per row — Delete,
-   Merge, or Keep — one sentence of reasoning each, and the merged tests written
-   out. Make no edits yet. Wait for approval.
-6. **Apply.** Execute the approved rows in one pass, deletions and merges
-   together.
-7. **Verify.** The suite is green, the test count is down, and **coverage has not
-   dropped**. A line or branch that loses all cover means the deleted test was
-   its only cover — restore that test, or fold its case into a surviving one.
-   Flat coverage with fewer tests is the shape of a successful shrink.
+   Merge, or Keep — one sentence of reasoning on every Delete and Merge row, and
+   the merged tests written out. Make no edits yet. Wait for approval.
+6. **Apply merges first, then deletions.** Re-measure coverage between the two
+   passes. A merged table test usually adds cover, because it iterates a whole
+   set. Batch the two passes together and that gain can hide a deletion that
+   removed the last cover of some other line.
+7. **Verify line by line.** The suite is green and the test count is down.
+   Compare the new coverage artifact against the Step-1 baseline **per line and
+   per branch**: no line that had cover before the shrink may have zero cover
+   after it. A summary percentage cannot show this, because the two passes net
+   out inside one number. A line that lost its only cover names the row that
+   took it — restore that test, or fold its case into a surviving one.
 8. **Commit alone.** `test(<scope>): drop scaffolding tests for <feature>`. A
    shrink never shares a commit with a behaviour change, so a later `git revert`
    restores the tests without dragging code back with them.
 
-A `Keep` needs no justification. A `Delete` needs a sentence.
+A `Keep` needs no justification. A `Delete` or a `Merge` needs a sentence.
 
 ## Safety Rails
 
-- **Never on red.** A failing test is not a shrink candidate. Deleting it
-  launders a failure as cleanup. Fix it, or delete it as its own decision with
-  its own stated reason.
+- **Never on red.** A failing test is not a shrink candidate. Deleting it hides
+  a real failure and calls the result cleanup. Fix the test, or delete it as its
+  own decision with its own stated reason.
 - **Never in the same commit as a behaviour change.**
 - **Read every candidate to the end.** A test that opens with three mirror
   assertions and closes with a real contract assertion is a Keep, or a Merge
   that preserves the closing assertion.
-- **"Annoying" is not a verdict.** A test that breaks on every rename is either
-  a mirror (delete it) or a contract pinned to a name (the design couples to
-  that name — fix the design and keep the test).
+- **"Annoying" is not a verdict.** A test that breaks on every rename is one of
+  two things. It is a mirror, so delete it. Or it is a contract pinned to a
+  name, which means the design couples to that name — fix the design and keep
+  the test.
 - **Stay inside the diff.** In default scope, leave tests the branch did not
   touch alone, even when they look like mirrors.
 
@@ -161,7 +174,7 @@ A `Keep` needs no justification. A `Delete` needs a sentence.
 
 | Excuse | Reality |
 |---|---|
-| "The test is short, so keeping it costs nothing." | The cost is not runtime. Every mirror is a second place to edit on the next refactor, the edit is mechanical, so it gets made without thought. That is how a suite stops catching anything. |
+| "The test is short, so keeping it costs nothing." | The cost is not runtime. Every mirror is a second place to edit on the next refactor. The edit is mechanical, so it gets made without thought. That is how a suite stops catching anything. |
 | "It couples to one place, so the rule says delete." | The rule says *examine*. Layer 2 decides. A boundary test on one function stays. |
 | "It covers a public API, so it must be a contract." | Public is not the same as agreed. If no second location depends on the value, the test still mirrors one line. |
 | "Coverage drops, but that path is obviously fine." | Then the path has no cover and no reader. Fold the case into a surviving test instead of dropping it. |

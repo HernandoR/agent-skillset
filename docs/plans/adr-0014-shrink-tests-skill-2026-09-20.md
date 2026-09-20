@@ -62,10 +62,14 @@ side while the code states it from the other side.
   Merge, Keep, one sentence of reasoning each — and makes no edits before
   approval. This matches the advisory posture of the rest of the repo, and test
   deletion is not reversible by re-running anything.
-- **Coverage is the verification gate.** A shrink must leave the suite green and
-  coverage flat while the test count falls. A line or branch that loses all
-  cover proves the deleted test was not redundant, and the case is restored or
-  folded into a surviving test.
+- **Coverage is the verification gate, measured line by line.** A shrink must
+  leave the suite green and the test count lower, and no line or branch that had
+  cover before the shrink may have zero cover after it. A summary percentage is
+  not the gate. A merged table test usually adds cover, because it iterates a
+  whole set, so a batched pass lets that gain hide a deletion that removed the
+  last cover of another line. Merges are therefore applied and measured before
+  deletions, and the Step-1 baseline is a per-line artifact rather than a
+  percentage.
 - **The shrink is always its own commit**, never shared with a behaviour change
   and never run on red or on a dirty tree, so a later revert restores the tests
   without dragging code back.
@@ -85,3 +89,15 @@ side while the code states it from the other side.
 - Propose-then-apply makes a shrink run slower than an autonomous cleanup. That
   cost is accepted, because a wrongly deleted test is silent until the
   regression it would have caught ships.
+- The chain above needs upstream routing to exist, so three artifacts now point
+  at the skill: the `development-best-practices` router, the `tdd-checkbox-plans`
+  Related Skills handoff, and the `finishing-a-development-branch` precondition.
+  Without them an agent reaches the skill only when the user says a trigger
+  phrase. The router gains `tdd-checkbox-plans` at the same time, which it had
+  omitted.
+- ADR-0013 routes each artifact class to a Strict or STE-flavored register, and
+  it classifies no `SKILL.md` body. A skill body is neither an error string nor
+  prose a human reads for its own sake. This skill is written to the
+  STE-flavored structural floor, and it uses no metaphor without a plain
+  reading. Whether skill bodies belong under Strict instead is left open for a
+  later amendment to `english-only-artifacts`.

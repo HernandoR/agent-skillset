@@ -15,6 +15,10 @@ chosen path, and clean up only when appropriate.
 Run the project verification command before offering finish options. Prefer
 `just ci` when available. If verification fails, stop and report the failure.
 
+When the branch added tests, run `shrink-tests` before offering finish options.
+Scaffolding is cheapest to remove while the intent of each test is still
+remembered.
+
 ## Determine The Base
 
 Find the likely base branch:
