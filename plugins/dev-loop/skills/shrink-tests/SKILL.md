@@ -148,9 +148,12 @@ case.
    baseline **for each line and each branch**. No line that had cover before the
    shrink may have zero cover after it. A summary percentage cannot show this,
    because a percentage can stay level while one line loses its only cover. When
-   a line fails this gate, read the Step-6 measurement. A line with cover after
-   the merges and no cover after the deletions names the deleted row that
-   removed it. Restore that test, or add its case to a test that remains.
+   a line fails this gate, read the Step-6 measurement. It gives one of two
+   answers. A line with cover after the merges and no cover after the deletions
+   names the deleted row that removed the cover: restore that test, or add its
+   case to a test that remains. A line with no cover after the merges names a
+   case that the merged table omits: add that case to the table, because the
+   row that held it is already gone.
 8. **Commit the shrink alone.** Use `test(<scope>): drop mirror tests for
    <feature>`. A shrink never shares a commit with a behaviour change. A later
    `git revert` then restores the tests and changes no production code.

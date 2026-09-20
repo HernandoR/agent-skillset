@@ -39,9 +39,9 @@ A `SKILL.md` body is Strict. A skill loads into an agent's context and directs
 that agent with no human present to resolve an ambiguity, which is the same
 condition as a tool description. Strict also covers the skill's frontmatter
 `description`, the skill's own `agents/openai.yaml` interface text, and a
-subagent definition under `plugins/<bundle>/agents/<name>.md`. The rule binds a skill body when the skill
-is created, and when it is next changed in substance. It does not require a
-rewrite of every skill that predates it.
+subagent definition under `plugins/<bundle>/agents/<name>.md`. The rule binds
+a skill body when the skill is created, and when it is next changed in
+substance. It does not require a rewrite of every skill that predates it.
 
 STE-flavored is the floor for prose, not an excuse to skip the pass: active
 voice, one instruction per sentence, sentences at or under 25 words, no

@@ -31,9 +31,10 @@ The register is Simplified Technical English (ASD-STE100): active voice, one
 instruction per sentence, short sentences, no phrasal verbs, no nominalization,
 and one name per thing. Apply it in full to text a machine or an agent parses
 without a human — error and log strings, CLI help, tool descriptions,
-inter-agent instructions, and skill bodies with their metadata. Apply its structural rules, with word choice left
-advisory, to prose a human reads. Never drop a hedge, a scope qualifier, or a
-safety condition to shorten a sentence.
+inter-agent instructions, and skill bodies with their metadata. Apply its
+structural rules, with word choice left advisory, to prose a human reads.
+Never drop a hedge, a scope qualifier, or a safety condition to shorten a
+sentence.
 
 ## Why
 
