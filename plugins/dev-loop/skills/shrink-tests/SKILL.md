@@ -139,16 +139,18 @@ case.
    Merge row. Write out each merged test in full. Make no edit yet. Wait for
    approval.
 6. **Apply the merges first. Apply the deletions second.** Measure coverage
-   again between the two passes. A merged table test usually adds cover, because
-   it iterates a full set. In one combined pass, that added cover can hide a
-   deletion that removed the last cover of a different line.
+   again between the two passes, and keep that measurement. The Step-7 gate
+   reports a line that lost its cover in either order, but it cannot report
+   which pass removed the cover. The measurement between the passes supplies
+   that fact. Step 7 uses it.
 7. **Verify line by line.** Confirm that the suite is green and that the test
-   count is lower. Compare the new coverage artifact against the Step-1 baseline
-   **for each line and each branch**. No line that had cover before the shrink
-   may have zero cover after it. A summary percentage cannot show this, because
-   the two passes cancel inside one number. When a line loses its only cover,
-   the comparison names the row that removed it. Restore that test, or add its
-   case to a test that remains.
+   count is lower. Compare the final coverage artifact against the Step-1
+   baseline **for each line and each branch**. No line that had cover before the
+   shrink may have zero cover after it. A summary percentage cannot show this,
+   because a percentage can stay level while one line loses its only cover. When
+   a line fails this gate, read the Step-6 measurement. A line with cover after
+   the merges and no cover after the deletions names the deleted row that
+   removed it. Restore that test, or add its case to a test that remains.
 8. **Commit the shrink alone.** Use `test(<scope>): drop mirror tests for
    <feature>`. A shrink never shares a commit with a behaviour change. A later
    `git revert` then restores the tests and changes no production code.

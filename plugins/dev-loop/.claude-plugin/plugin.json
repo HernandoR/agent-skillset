@@ -7,7 +7,7 @@
   "interface": {
     "displayName": "Dev Loop",
     "shortDescription": "The development loop: worktrees, TDD plans, Justfile recipes, verification, merge",
-    "longDescription": "Skills for executing the work. Start isolated feature work in a worktree, split an accepted ADR into red-test-then-implement steps, wrap repeatable commands in a Justfile, commit each verified step with a conventional subject, shrink the scaffolding tests the ladder leaves behind, prove completion before claiming it, and decide what happens to the branch at the end.",
+    "longDescription": "Skills for executing the work. Start isolated feature work in a worktree, split an accepted ADR into red-test-then-implement steps, wrap repeatable commands in a Justfile, commit each verified step with a conventional subject, shrink the mirror tests the ladder leaves behind, prove completion before claiming it, and decide what happens to the branch at the end.",
     "developerName": "HernandoR",
     "category": "Productivity",
     "capabilities": ["Interactive", "Write"],

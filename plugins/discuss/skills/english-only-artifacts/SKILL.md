@@ -38,8 +38,8 @@ it to the artifact before you commit it.
 A `SKILL.md` body is Strict. A skill loads into an agent's context and directs
 that agent with no human present to resolve an ambiguity, which is the same
 condition as a tool description. Strict also covers the skill's frontmatter
-`description`, the `agents/openai.yaml` interface text, and a subagent
-definition under `agents/<name>.md`. The rule binds a skill body when the skill
+`description`, the skill's own `agents/openai.yaml` interface text, and a
+subagent definition under `plugins/<bundle>/agents/<name>.md`. The rule binds a skill body when the skill
 is created, and when it is next changed in substance. It does not require a
 rewrite of every skill that predates it.
 

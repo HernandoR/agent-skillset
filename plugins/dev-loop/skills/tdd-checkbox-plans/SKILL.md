@@ -137,4 +137,4 @@ project's `scripts/` if a tracked ladder file is being kept (e.g.
 - `adr-driven-development` — the ADR is the upstream of every ladder; its
   Verification section is the downstream record.
 - `shrink-tests` — downstream. Once the last task is green, the ladder's tests
-  split into guards and scaffolding. Shrink before the branch is finished.
+  split into guards and mirrors. Shrink before the branch is finished.

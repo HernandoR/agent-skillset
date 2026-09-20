@@ -54,7 +54,7 @@ side while the code states it from the other side.
   relationship breaks rather than when a value changes on purpose. A delete that
   would remove the last cover of a real case is a merge instead.
 - **Default scope is the branch diff.** The tests this branch added or changed
-  are the scaffolding whose intent is still remembered. Whole-suite auditing is
+  are the mirrors whose intent is still remembered. Whole-suite auditing is
   available on request, one module at a time, ranked by co-change history and by
   test names that quote implementation details. A bulk delete across modules can
   be neither reviewed nor bisected.
@@ -65,11 +65,12 @@ side while the code states it from the other side.
 - **Coverage is the verification gate, measured line by line.** A shrink must
   leave the suite green and the test count lower, and no line or branch that had
   cover before the shrink may have zero cover after it. A summary percentage is
-  not the gate. A merged table test usually adds cover, because it iterates a
-  whole set, so a batched pass lets that gain hide a deletion that removed the
-  last cover of another line. Merges are therefore applied and measured before
-  deletions, and the Step-1 baseline is a per-line artifact rather than a
-  percentage.
+  not the gate, because a percentage can stay level while one line loses its
+  only cover. The Step-1 baseline is therefore a per-line artifact. Merges are
+  applied and measured before deletions for a second reason, which is
+  attribution: the per-line gate reports the lost line in either order, but only
+  a measurement taken between the two passes says which pass removed the cover,
+  and so which row to restore.
 - **The shrink is always its own commit**, never shared with a behaviour change
   and never run on red or on a dirty tree, so a later revert restores the tests
   without dragging code back.
