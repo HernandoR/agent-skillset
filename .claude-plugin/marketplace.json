@@ -5,7 +5,7 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "plugins": [
     {
       "name": "discuss",
@@ -20,7 +20,7 @@
     {
       "name": "dev-loop",
       "source": "./plugins/dev-loop",
-      "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, and best practices"
+      "description": "Git workflow, versioning, worktrees, Justfile recipes, TDD, test shrinking, and best practices"
     },
     {
       "name": "fetch-external-knowledge",
