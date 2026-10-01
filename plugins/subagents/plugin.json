@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "subagents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review",
   "author": {
     "name": "HernandoR",

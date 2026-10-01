@@ -1,6 +1,6 @@
 {
   "name": "subagents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review",
   "keywords": ["subagent", "delegation", "haiku", "opus", "fable", "review", "claude-code"],
   "interface": {
