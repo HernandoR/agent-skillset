@@ -1,19 +1,19 @@
 {
   "name": "subagents",
-  "version": "0.2.0",
-  "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review",
-  "keywords": ["subagent", "delegation", "haiku", "opus", "fable", "review", "claude-code"],
+  "version": "0.3.0",
+  "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, sonnet for well-specified development, opus for open-ended development and read-only review",
+  "keywords": ["subagent", "delegation", "haiku", "sonnet", "opus", "review", "claude-code"],
   "interface": {
     "displayName": "Subagents",
-    "shortDescription": "Three model-tiered Claude Code subagents to delegate work by cost and judgment required",
-    "longDescription": "Claude Code subagent definitions loaded from the bundle's agents/ directory: haiku-task runs simple, explicitly scoped mechanical work at low cost; opus-dev implements bounded changes, reviews, and diagnoses bugs where judgment matters; fable-review is a read-only, highest-quality reviewer for bug hunting, plan review, and verifying cheaper agents' output. Each agent returns conclusions and validation results rather than a step-by-step log. The bundle ships no skills; other harnesses load it as an empty plugin.",
+    "shortDescription": "Four model-tiered Claude Code subagents to delegate work by cost and judgment required",
+    "longDescription": "Claude Code subagent definitions loaded from the bundle's agents/ directory: haiku-task runs simple, explicitly scoped mechanical work at low cost; sonnet-dev implements well-specified changes where the parent already decided what to change; opus-highlevel-dev handles open-ended work where the agent must find the cause or choose the approach; opus-review is a read-only reviewer for bug hunting, plan review, and verifying other agents' output. Each agent returns conclusions and validation results rather than a step-by-step log. The bundle ships no skills; other harnesses load it as an empty plugin.",
     "developerName": "HernandoR",
     "category": "Productivity",
     "capabilities": ["Interactive", "Write"],
     "defaultPrompt": [
       "Use haiku-task to apply this rename across the listed files.",
-      "Delegate this bounded change to opus-dev and report the test results.",
-      "Have fable-review hunt for bugs in this diff."
+      "Have sonnet-dev implement step 3 of the plan and report the test results.",
+      "Have opus-highlevel-dev find the root cause of this flaky test and fix it."
     ]
   }
 }

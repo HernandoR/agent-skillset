@@ -1,6 +1,6 @@
 # ADR-0012: Model-Tiered Subagents Bundle
 
-- Status: Accepted
+- Status: Accepted; agent set amended by [ADR-0016](adr-0016-four-subagent-tiers-2026-10-23.md)
 - Date: 2026-09-07
 
 ## Context

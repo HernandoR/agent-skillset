@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "subagents",
-  "version": "0.2.0",
-  "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review",
+  "version": "0.3.0",
+  "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, sonnet for well-specified development, opus for open-ended development and read-only review",
   "author": {
     "name": "HernandoR",
     "email": "hernando@mewtant.io"
   },
   "homepage": "https://github.com/HernandoR/agent-skillset",
   "repository": "https://github.com/HernandoR/agent-skillset",
-  "keywords": ["subagent", "delegation", "haiku", "opus", "fable", "review", "claude-code"]
+  "keywords": ["subagent", "delegation", "haiku", "sonnet", "opus", "review", "claude-code"]
 }

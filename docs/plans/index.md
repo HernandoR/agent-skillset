@@ -32,10 +32,11 @@ adr-{id}-{kebab-case-title}-{YYYY-MM-DD}.md
 | [ADR-0009](adr-0009-multi-harness-plugin-compatibility-2026-08-05.md) | Multi-Harness Plugin Compatibility (Codex and Pi) | Accepted |
 | [ADR-0010](adr-0010-remove-commit-reminder-hook-2026-08-07.md) | Remove the Commit-Reminder Hook | Accepted |
 | [ADR-0011](adr-0011-agent-plugins-compatibility-2026-08-09.md) | Agent Plugins Compatibility | Accepted |
-| [ADR-0012](adr-0012-model-tiered-subagents-bundle-2026-09-07.md) | Model-Tiered Subagents Bundle | Accepted |
+| [ADR-0012](adr-0012-model-tiered-subagents-bundle-2026-09-07.md) | Model-Tiered Subagents Bundle | Accepted (agent set amended by ADR-0016) |
 | [ADR-0013](adr-0013-ste-register-for-english-artifacts-2026-09-10.md) | STE Register for English Artifacts | Accepted |
 | [ADR-0014](adr-0014-shrink-tests-skill-2026-09-20.md) | Shrink-Tests Skill | Accepted |
 | [ADR-0015](adr-0015-skill-bodies-use-strict-ste-2026-09-20.md) | Skill Bodies Use Strict STE | Accepted |
+| [ADR-0016](adr-0016-four-subagent-tiers-2026-10-23.md) | Four Subagent Tiers | Accepted |
 
 ## Process
 
