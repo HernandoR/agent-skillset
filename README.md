@@ -155,4 +155,4 @@ Vendored verbatim from [Yevanchen/reclaim-code-entropy](https://github.com/Yevan
 ### subagents
 Model-tiered Claude Code subagents for delegating work by cost and the judgment it needs. Loaded from the bundle's `agents/` directory; this bundle ships no skills and is inert on Codex, Pi, and Agent Plugins clients.
 
-Agents: `haiku-task` (low-cost mechanical execution from an explicit checklist), `opus-dev` (bounded implementation, substantive review, tradeoff analysis, bug diagnosis), `fable-review` (read-only highest-quality reviewer for bug hunting, plan review, and verifying cheaper agents' output)
+Agents: `haiku-task` (low-cost mechanical execution from an explicit checklist), `sonnet-dev` (well-specified implementation: the parent already decided what to change), `opus-highlevel-dev` (open-ended development: find the cause or choose the approach, then implement), `opus-review` (read-only reviewer for bug hunting, plan review, and verifying other agents' output)

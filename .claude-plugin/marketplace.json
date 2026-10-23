@@ -5,7 +5,7 @@
     "email": "hernando@mewtant.io"
   },
   "description": "Reusable Claude Code skills for engineering workflows",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "plugins": [
     {
       "name": "discuss",
@@ -40,7 +40,7 @@
     {
       "name": "subagents",
       "source": "./plugins/subagents",
-      "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, opus for judgment-heavy development, fable for read-only review"
+      "description": "Model-tiered Claude Code subagents: haiku for mechanical execution, sonnet for well-specified development, opus for open-ended development and read-only review"
     }
   ]
 }
